@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="library.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>library</title>
+</head>
+
+<body>
+    <div class="bg">
+        <nav class="navbar navbar-expand-lg text-success">
+            <div class="container-fluid d-flex justify-content-between">
+                <h1>YOUR LIBRARY</h1>
+                <div class="d-flex gap-3 " id="" role="search">
+                    <button class="btn color" type="button">Sign in</button>
+                    <button class="btn bgbtn" type="button">Sign up</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="d-flex p-4 justify-content-center">
+        <img src="/Code/images/signin.svg" alt="" width="30%">
+        <div class="p-5  d-flex flex-column justify-content-center">
+            <form action="" method="POST" class="signupform" id="signupform">
+                <!-- NAME input -->
+                <div class="formvalid">
+                    <input type="text" name="name" placeholder="Firstname" id="name" class="">
+                    <br>
+                    <small></small>
+                </div>
+
+                <!-- LASTNAME input -->
+                <div class="formvalid">
+                    <input type="text" name="lastname" placeholder="lastname" id="lastname" class="">
+                    <br>
+                    <small></small>
+                </div>
+                <!-- EMAIL input -->
+                <div class="formvalid">
+                    <input type="text" name="email" placeholder="adresse Email" id="email" class="">
+                    <br>
+                    <small>
+
+                    </small>
+                </div>
+                <!-- NUMBER input -->
+                <div class="formvalid">
+                    <input type="number" name="phone" placeholder="Numéro de téléphone" id="phone" class="">
+                    <br>
+                    <small></small>
+                </div>
+                <!-- PASSWORD input -->
+                <div class="formvalid">
+                    <input type="password" name="pwd" placeholder="Password" id="pwd" class="">
+                    <br>
+                    <small></small>
+                </div>
+                <!-- PASSWORD input -->
+                <div class="formvalid">
+                    <input type="password" name="pwd_repeated" min="0" placeholder="Repeat Password" class=""
+                        id="pwd_repeated">
+                    <br>
+                    <small></small>
+                </div>
+                <button type="submit" class="btn btn-primary" name="signupbtn" id="signupbtn">sign up</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/0f55910cdd.js" crossorigin="anonymous"></script>
+
+    <script src="library.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
