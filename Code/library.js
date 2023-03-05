@@ -49,27 +49,35 @@ if (fileInputs) {
 // HIDE SHOW PASSWORD SIGNUP
  const togglePassword = document.querySelector('#togglePassword');
  const password = document.querySelector('#password');
+ if(togglePassword)
+ {
+    togglePassword.addEventListener('click', function () {
+        // toggle the type attribute
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        // toggle the eye slash icon
+        const icon=this.querySelector("i")
+        icon.classList.toggle('fa-eye');
+     });
+ }
 
- togglePassword.addEventListener('click', function () {
-   // toggle the type attribute
-   const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-   password.setAttribute('type', type);
-   // toggle the eye slash icon
-   const icon=this.querySelector("i")
-   icon.classList.toggle('fa-eye');
-});
+
 // HIDE SHOW CONFIRM PASSWORD SIGNUP
 const togglePasswordconfirm = document.querySelector('#togglePasswordconfirm');
 const passwordconfirm = document.querySelector('#confirmpassword');
+if (togglePasswordconfirm) {
+    togglePasswordconfirm.addEventListener('click', function () {
+        // toggle the type attribute
+        const type = passwordconfirm.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordconfirm.setAttribute('type', type);
+        // toggle the eye slash icon
+        const iconconfirm=this.querySelector("i")
+        iconconfirm.classList.toggle('fa-eye');
+      });
+    
+}
 
-togglePasswordconfirm.addEventListener('click', function () {
-  // toggle the type attribute
-  const type = passwordconfirm.getAttribute('type') === 'password' ? 'text' : 'password';
-  passwordconfirm.setAttribute('type', type);
-  // toggle the eye slash icon
-  const iconconfirm=this.querySelector("i")
-  iconconfirm.classList.toggle('fa-eye');
-});
+
 // FUNCTION FOR ERROR AND SUCCES
 function setErrorFor(element, errorMessage) {
     const parent = element.closest('.formvalid');
@@ -101,16 +109,21 @@ const nickname_signup =document.querySelector('#nickname');
 const birthdate_signup =document.querySelector('#bithdate');
 const password_signup =document.querySelector('#password');
 const confirmpassword_signup =document.querySelector('#confirmpassword');
-form_signup.addEventListener('submit', (event)=>{
-  validate_Form_signup();
-  console.log(isFormValid_signup());
-  if(isFormValid_signup()==true){
-      form_signup.submit();
-   }else {
-       event.preventDefault();
-   }
+if(form_signup)
+{
+    form_signup.addEventListener('submit', (event)=>{
+        validate_Form_signup();
+        console.log(isFormValid_signup());
+        if(isFormValid_signup()==true){
+            form_signup.submit();
+         }else {
+             event.preventDefault();
+         }
+      
+      });
 
-});
+}
+
 
 function isFormValid_signup(){
   const inputContainers = form_signup.querySelectorAll('.formvalid');
@@ -128,7 +141,7 @@ function validate_name()
     if(name_signup.value.match(/[a-zA-Z]{3,30}/g)) {
         setSuccessFor(name_signup);
     } else {
-        setErrorFor(name_signup, 'champ obligatoire');
+        setErrorFor(name_signup, 'champ no valid');
     }
 }
 function validate_cin()
@@ -136,31 +149,31 @@ function validate_cin()
     if(cin_signup.value.match(/[a-zA-Z]{3,30}/g)) {
         setSuccessFor(cin_signup);
     } else {
-        setErrorFor(cin_signup, 'champ obligatoire');
+        setErrorFor(cin_signup, 'champ no valid');
     }
 }
 function validate_phone()
 {
-    if(phone_signup.value.match(/[a-zA-Z]{3,30}/g)) {
+    if(phone_signup.value.match(/(06|07)\d{8}/g)) {
         setSuccessFor(phone_signup);
     } else {
-        setErrorFor(phone_signup, 'champ obligatoire');
+        setErrorFor(phone_signup, 'champ no valid');
     }
 }
 function validate_email()
 {
-    if(email_signup.value.match(/[a-zA-Z]{3,30}/g)) {
+    if(email_signup.value.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/g)) {
         setSuccessFor(email_signup);
     } else {
-        setErrorFor(email_signup, 'champ obligatoire');
+        setErrorFor(email_signup, 'champ no valid');
     }
 }
 function validate_adress()
 {
-    if(adresse_signup.value.match(/[a-zA-Z]{3,30}/g)) {
+    if(adresse_signup.value.match(/[a-zA-Z]{3,1000}/g)) {
         setSuccessFor(adresse_signup);
     } else {
-        setErrorFor(adresse_signup, 'champ obligatoire');
+        setErrorFor(adresse_signup, 'champ valid valid');
     }
 }
 function validate_type()
@@ -168,39 +181,41 @@ function validate_type()
     if(type_signup.value.match(/[a-zA-Z]{3,30}/g)) {
         setSuccessFor(type_signup);
     } else {
-        setErrorFor(type_signup, 'champ obligatoire');
+        setErrorFor(type_signup, 'champ no valid');
     }
 }
 function validate_nickname()
 {
-    if(nickname_signup.value.match(/[a-zA-Z]{3,30}/g)) {
+    if(nickname_signup.value.match(/^(?=.*[a-zA-Z])(?=.*\d).+$/g)) {
         setSuccessFor(nickname_signup);
     } else {
-        setErrorFor(nickname_signup, 'champ obligatoire');
+        setErrorFor(nickname_signup, 'champ no valid');
     }
 }
 function validate_birthdate()
 {
-    if(birthdate_signup.value.match(/[a-zA-Z]{3,30}/g)) {
+    if(birthdate_signup.value.match(/^\d{4}-\d{2}-\d{2}$/g)) {
         setSuccessFor(birthdate_signup);
     } else {
-        setErrorFor(birthdate_signup, 'champ obligatoire');
+        setErrorFor(birthdate_signup, 'champ no valid');
     }
 }
 function validate_password()
 {
-    if(password_signup.value.match(/[a-zA-Z]{3,30}/g)) {
+    if(password_signup.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{}|\[\]\\:";<>,.?/~`]).{8,}$/g)) {
         setSuccessFor(password_signup);
     } else {
-        setErrorFor(password_signup, 'champ obligatoire');
+        setErrorFor(password_signup, 'champ no valid');
+        setErrorFor(confirmpassword_signup, 'champ no valid');
+
     }
 }
 function validate_confirmpassword()
 {
-    if(confirmpassword_signup.value.match(/[a-zA-Z]{3,30}/g)) {
+    if(confirmpassword_signup.value == password_signup.value) {
         setSuccessFor(confirmpassword_signup);
     } else {
-        setErrorFor(confirmpassword_signup, 'champ obligatoire');
+        setErrorFor(confirmpassword_signup, 'champ no valid');
     }
 }
 function validate_Form_signup()
@@ -215,5 +230,398 @@ function validate_Form_signup()
     validate_confirmpassword();
     validate_password();
     validate_nickname();
+}
+// VALIDATION FORM SIGNIN
+const form_signin = document.querySelector('#signinform');
+const nickname_signin =document.querySelector('#nicknamesignin');
+const password_signin =document.querySelector('#passwordsignin');
+if (form_signin) {
+    form_signin.addEventListener('submit', (event)=>{
+        console.log("dkhel");
+        validate_Form_signin();
+      console.log(isFormValid_signin());
+      if(isFormValid_signin()==true){
+        form_signin.submit();
+       }else {
+           event.preventDefault();
+       }
+    
+    });
+    
+}
 
+
+function isFormValid_signin(){
+  const inputContainers = form_signin.querySelectorAll('.formvalid');
+  let result = true;
+  inputContainers.forEach((container)=>{
+      if(container.classList.contains('formvalid-error')){
+          result = false;
+      }
+  });
+  return result;
+}
+function validate_nicknamesignin()
+{
+    if(nickname_signin.value.match(/^(?=.*[a-zA-Z])(?=.*\d).+$/g)) {
+        setSuccessFor(nickname_signin);
+    } else {
+        setErrorFor(nickname_signin, 'champ no valid');
+    }
+}
+function validate_passwordsignin()
+{
+    if(password_signin.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{}|\[\]\\:";<>,.?/~`]).{8,}$/g)) {
+        setSuccessFor(password_signin);
+    } else {
+        setErrorFor(password_signin, 'champ no valid');
+
+    }
+}
+function validate_Form_signin()
+{
+
+    validate_passwordsignin();
+    validate_nicknamesignin();
+}
+// VALIDATION FORM EDIT PROFILE
+const form_editprofile = document.querySelector('#editprofileform');
+const name_editprofile = document.querySelector('#nameedit');
+const cin_editprofile = document.querySelector("#cinedit");
+const phone_editprofile = document.querySelector("#phoneedit");
+const email_editprofile = document.querySelector("#emailedit");
+const adresse_editprofile = document.querySelector("#adresseedit");
+const type_editprofile =document.querySelector('#typeedit');
+const nickname_editprofile =document.querySelector('#nicknameedit');
+const birthdate_editprofile =document.querySelector('#bithdateedit');
+const password_editprofile =document.querySelector('#passwordedit');
+const confirmpassword_editprofile =document.querySelector('#confirmpasswordedit');
+if(form_editprofile)
+{
+    form_editprofile.addEventListener('submit', (event)=>{
+        console.log("dkhel");
+        validate_Form_editprofile();
+        console.log(isFormValid_editprofile());
+        if(isFormValid_editprofile()==true){
+            form_editprofile.submit();
+         }else {
+             event.preventDefault();
+         }
+      
+      });
+
+}
+
+
+function isFormValid_editprofile(){
+  const inputContainers = form_editprofile.querySelectorAll('.formvalid');
+  let result = true;
+  inputContainers.forEach((container)=>{
+      if(container.classList.contains('formvalid-error')){
+          result = false;
+      }
+  });
+  return result;
+}
+
+function validate_name_editprofile()
+{
+    if(name_editprofile.value.match(/[a-zA-Z]{3,30}/g)) {
+        setSuccessFor(name_editprofile);
+    } else {
+        setErrorFor(name_editprofile, 'champ no valid');
+    }
+}
+function validate_cin_editprofile()
+{
+    if(cin_editprofile.value.match(/[a-zA-Z]{3,30}/g)) {
+        setSuccessFor(cin_editprofile);
+    } else {
+        setErrorFor(cin_editprofile, 'champ no valid');
+    }
+}
+function validate_phone_editprofile()
+{
+    if(phone_editprofile.value.match(/(06|07)\d{8}/g)) {
+        setSuccessFor(phone_editprofile);
+    } else {
+        setErrorFor(phone_editprofile, 'champ no valid');
+    }
+}
+function validate_email_editprofile()
+{
+    if(email_editprofile.value.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/g)) {
+        setSuccessFor(email_editprofile);
+    } else {
+        setErrorFor(email_editprofile, 'champ no valid');
+    }
+}
+function validate_adress_editprofile()
+{
+    if(adresse_editprofile.value.match(/[a-zA-Z]{3,1000}/g)) {
+        setSuccessFor(adresse_editprofile);
+    } else {
+        setErrorFor(adresse_editprofile, 'champ valid valid');
+    }
+}
+function validate_type_editprofile()
+{
+    if(type_editprofile.value.match(/[a-zA-Z]{3,30}/g)) {
+        setSuccessFor(type_editprofile);
+    } else {
+        setErrorFor(type_editprofile, 'champ no valid');
+    }
+}
+function validate_nickname_editprofile()
+{
+    if(nickname_editprofile.value.match(/^(?=.*[a-zA-Z])(?=.*\d).+$/g)) {
+        setSuccessFor(nickname_editprofile);
+    } else {
+        setErrorFor(nickname_editprofile, 'champ no valid');
+    }
+}
+function validate_birthdate_editprofile()
+{
+    if(birthdate_editprofile.value.match(/^\d{4}-\d{2}-\d{2}$/g)) {
+        setSuccessFor(birthdate_editprofile);
+    } else {
+        setErrorFor(birthdate_editprofile, 'champ no valid');
+    }
+}
+function validate_password_editprofile()
+{
+    if(password_editprofile.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{}|\[\]\\:";<>,.?/~`]).{8,}$/g)) {
+        setSuccessFor(password_editprofile);
+    } else {
+        setErrorFor(password_editprofile, 'champ no valid');
+        setErrorFor(confirmpassword_editprofile, 'champ no valid');
+
+    }
+}
+function validate_confirmpassword_editprofile()
+{
+    if(confirmpassword_editprofile.value == password_editprofile.value) {
+        setSuccessFor(confirmpassword_editprofile);
+    } else {
+        setErrorFor(confirmpassword_editprofile, 'champ no valid');
+    }
+}
+function validate_Form_editprofile()
+{
+    validate_name_editprofile();
+    validate_adress_editprofile();
+    validate_birthdate_editprofile();
+    validate_cin_editprofile();
+    validate_email_editprofile();
+    validate_phone_editprofile();
+    validate_type_editprofile();
+    validate_confirmpassword_editprofile();
+    validate_password_editprofile();
+    validate_nickname_editprofile();
+}
+// VALIDATION ADD COLLECTION
+const form_editcollection = document.querySelector('.myFormupdat');
+const title_editcollection = document.querySelector('.titleupdat');
+const author_editcollection = document.querySelector(".authorupdat");
+const editiondate_editcollection = document.querySelector(".editiondateupdat");
+const datepurchase_editcollection = document.querySelector(".datepurchaseupdat");
+const state_editcollection = document.querySelector(".stateupdat");
+const status_editcollection =document.querySelector('.statusupdat');
+const type_editcollection =document.querySelector('.typeupdat');
+if(form_editcollection)
+{
+    form_editcollection.addEventListener('submit', (event)=>{
+        validate_Form_editcollection();
+        console.log(isFormValid_editcollection());
+        if(isFormValid_editcollection()==true){
+            form_editcollection.submit();
+         }else {
+             event.preventDefault();
+         }
+      
+      });
+
+}
+
+
+function isFormValid_editcollection(){
+  const inputContainers = form_editcollection.querySelectorAll('.formvalid');
+  let result = true;
+  inputContainers.forEach((container)=>{
+      if(container.classList.contains('formvalid-error')){
+          result = false;
+      }
+  });
+  return result;
+}
+
+function validate_title_editcollection()
+{
+    if(title_editcollection.value.match(/[a-zA-Z]{3,30}/g)) {
+        setSuccessFor(title_editcollection);
+    } else {
+        setErrorFor(title_editcollection, 'champ no valid');
+    }
+}
+function validate_author_editcollection()
+{
+    if(author_editcollection.value.match(/[a-zA-Z]{3,30}/g)) {
+        setSuccessFor(author_editcollection);
+    } else {
+        setErrorFor(author_editcollection, 'champ no valid');
+    }
+}
+function validate_editiondate_editcollection()
+{
+    if(editiondate_editcollection.value.match(/^\d{4}-\d{2}-\d{2}$/g)) {
+        setSuccessFor(editiondate_editcollection);
+    } else {
+        setErrorFor(editiondate_editcollection, 'champ no valid');
+    }
+}
+function validate_datepurchase_editcollection()
+{
+    if(datepurchase_editcollection.value.match(/^\d{4}-\d{2}-\d{2}$/g)) {
+        setSuccessFor(datepurchase_editcollection);
+    } else {
+        setErrorFor(datepurchase_editcollection, 'champ no valid');
+    }
+}
+function validate_state_editcollection()
+{
+    if(state_editcollection.selectedIndex>0) {
+        setSuccessFor(state_editcollection);
+    } else {
+        setErrorFor(state_editcollection, 'champ valid valid');
+    }
+}
+function validate_type_editcollection()
+{
+    if(type_editcollection.selectedIndex>0) {
+        setSuccessFor(type_editcollection);
+    } else {
+        setErrorFor(type_editcollection, 'champ no valid');
+    }
+}
+function validate_status_editcollection()
+{
+    if(status_editcollection.selectedIndex>0) {
+        setSuccessFor(status_editcollection);
+    } else {
+        setErrorFor(status_editcollection, 'champ no valid');
+    }
+}
+
+function validate_Form_editcollection()
+{
+    validate_title_editcollection();
+    validate_state_editcollection();
+    validate_author_editcollection();
+    validate_datepurchase_editcollection();
+    validate_editiondate_editcollection();
+    validate_type_editcollection();
+    validate_status_editcollection();
+}
+// VALIDATION ADD COLLECTION
+const form_addcollection = document.querySelector('.myFormadd');
+const title_addcollection = document.querySelector('.titleadd');
+const author_addcollection = document.querySelector(".authoradd");
+const editiondate_addcollection = document.querySelector(".editiondateadd");
+const datepurchase_addcollection = document.querySelector(".datepurchaseadd");
+const state_addcollection = document.querySelector(".stateadd");
+const status_addcollection =document.querySelector('.statusadd');
+const type_addcollection =document.querySelector('.typeadd');
+if(form_addcollection)
+{
+    form_addcollection.addEventListener('submit', (event)=>{
+        validate_Form_addcollection();
+        console.log(isFormValid_addcollection());
+        if(isFormValid_addcollection()==true){
+            form_addcollection.submit();
+         }else {
+             event.preventDefault();
+         }
+      
+      });
+
+}
+
+
+function isFormValid_addcollection(){
+  const inputContainers = form_addcollection.querySelectorAll('.formvalid');
+  let result = true;
+  inputContainers.forEach((container)=>{
+      if(container.classList.contains('formvalid-error')){
+          result = false;
+      }
+  });
+  return result;
+}
+
+function validate_title_addcollection()
+{
+    if(title_addcollection.value.match(/[a-zA-Z]{3,30}/g)) {
+        setSuccessFor(title_addcollection);
+    } else {
+        setErrorFor(title_addcollection, 'champ no valid');
+    }
+}
+function validate_author_addcollection()
+{
+    if(author_addcollection.value.match(/[a-zA-Z]{3,30}/g)) {
+        setSuccessFor(author_addcollection);
+    } else {
+        setErrorFor(author_addcollection, 'champ no valid');
+    }
+}
+function validate_editiondate_addcollection()
+{
+    if(editiondate_addcollection.value.match(/^\d{4}-\d{2}-\d{2}$/g)) {
+        setSuccessFor(editiondate_addcollection);
+    } else {
+        setErrorFor(editiondate_addcollection, 'champ no valid');
+    }
+}
+function validate_datepurchase_addcollection()
+{
+    if(datepurchase_addcollection.value.match(/^\d{4}-\d{2}-\d{2}$/g)) {
+        setSuccessFor(datepurchase_addcollection);
+    } else {
+        setErrorFor(datepurchase_addcollection, 'champ no valid');
+    }
+}
+function validate_state_addcollection()
+{
+    if(state_addcollection.selectedIndex>0) {
+        setSuccessFor(state_addcollection);
+    } else {
+        setErrorFor(state_addcollection, 'champ valid valid');
+    }
+}
+function validate_type_addcollection()
+{
+    if(type_addcollection.selectedIndex>0) {
+        setSuccessFor(type_addcollection);
+    } else {
+        setErrorFor(type_addcollection, 'champ no valid');
+    }
+}
+function validate_status_addcollection()
+{
+    if(status_addcollection.selectedIndex>0) {
+        setSuccessFor(status_addcollection);
+    } else {
+        setErrorFor(status_addcollection, 'champ no valid');
+    }
+}
+
+function validate_Form_addcollection()
+{
+    validate_title_addcollection();
+    validate_state_addcollection();
+    validate_author_addcollection();
+    validate_datepurchase_addcollection();
+    validate_editiondate_addcollection();
+    validate_type_addcollection();
+    validate_status_addcollection();
 }
