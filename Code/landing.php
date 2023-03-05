@@ -13,7 +13,7 @@
       <nav class="navbar navbar-expand-lg text-success">
          <div class="container-fluid d-flex justify-content-between">
             <h1>YOUR LIBRARY</h1>
-             <div class="d-flex gap-3 " id="" role="search">
+             <div class="d-flex gap-3" id="">
                <button class="btn color" type="button">Sign in</button>
                <button class="btn bgbtn" type="button">Sign up</button>
              </div>
@@ -28,7 +28,7 @@
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
             <button class="btn bgbtn w-75" type="button">Book Now</button>
          </div>
-         <img src="/Code/images/landing.svg" alt="" width="55%" >
+         <img src="./images/landing.svg" alt="landing image" width="55%" >
       </div>
       <footer class="d-flex  flex-column align-items-center">
          <div class="d-flex  gap-3  p-3">

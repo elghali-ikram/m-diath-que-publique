@@ -34,7 +34,7 @@
         <div class="d-flex justify-content-center gap-2 flex-column w-100 p-5">
             <div class="d-flex justify-content-between bg_res h-50 rounded p-3 "  >
                 <div class="d-flex gap-5 ">
-                    <img src="/Code/images/book.jpg" class="img-fluid rounded" alt="..." width="100px">
+                    <img src="../images/book.jpg" class="img-fluid rounded" alt="..." width="100px">
                     <div class="d-flex flex-column bg_p">
                         <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, </h4>
                         <p><i class="fa-regular fa-calendar"></i>  12/12/2012</p>
@@ -54,7 +54,7 @@
             </div>
             <div class="d-flex justify-content-between bg_res h-50 rounded p-3 " >
                 <div class="d-flex gap-5">
-                    <img src="/Code/images/book.jpg" class="img-fluid rounded" alt="..." width="100px">
+                    <img src="../images/book.jpg" class="img-fluid rounded" alt="..." width="100px">
                     <div class="d-flex flex-column bg_p">
                         <h4>jhbjfnd</h4>
                         <p><i class="fa-regular fa-calendar"></i>  12/12/2012</p>
@@ -74,7 +74,7 @@
             </div>
             <div class="d-flex justify-content-between bg_res h-50 rounded p-3 " >
                 <div class="d-flex gap-5">
-                    <img src="/Code/images/book.jpg" class="img-fluid rounded" alt="..." width="100px">
+                    <img src="../images/book.jpg" class="img-fluid rounded" alt="..." width="100px">
                     <div class="d-flex flex-column bg_p">
                         <h4>jhbjfnd</h4>
                         <p><i class="fa-regular fa-calendar"></i>  12/12/2012</p>
@@ -94,7 +94,7 @@
             </div>
             <div class="d-flex justify-content-between bg_res h-50 rounded p-3 " >
                 <div class="d-flex gap-5">
-                    <img src="/Code/images/book.jpg" class="img-fluid rounded" alt="..." width="100px">
+                    <img src="../images/book.jpg" class="img-fluid rounded" alt="..." width="100px">
                     <div class="d-flex flex-column bg_p">
                         <h4>jhbjfnd</h4>
                         <p><i class="fa-regular fa-calendar"></i>  12/12/2012</p>
