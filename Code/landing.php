@@ -14,8 +14,8 @@
          <div class="container-fluid d-flex justify-content-between">
             <h1>YOUR LIBRARY</h1>
              <div class="d-flex gap-3" id="">
-               <button class="btn color" type="button">Sign in</button>
-               <button class="btn bgbtn" type="button">Sign up</button>
+               <a href="./signin.php"><button class="btn color" type="button">Sign in</button></a> 
+               <a href="./signup.php"><button class="btn bgbtn" type="button">Sign up</button></a>
              </div>
          </div>
        </nav>
@@ -26,7 +26,8 @@
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-            <button class="btn bgbtn w-75" type="button">Book Now</button>
+            
+            <a href="./signin.php"> <button class="btn bgbtn w-75" type="button">Book Now</button></a>
          </div>
          <img src="./images/landing.svg" alt="landing image" width="55%" >
       </div>

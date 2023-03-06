@@ -1,5 +1,4 @@
 <?php 
-
     class dbConnect {  
         private $db;
         function __construct() { 
@@ -13,8 +12,67 @@
                     echo "Cannot connect to the database";  
                 }      
         }  
-        //      ,?
-        // 
+        public function isUserExist($nickname, $email,$cin,)
+        {
+            try {
+                $sql = "SELECT * FROM `adherent` WHERE `Nickname`=? OR `Email`=? OR `CIN`=?";
+                $query = $this->db->prepare( $sql );
+                $query->execute( array($nickname,$email,$cin));
+                $results = $query->fetchAll();
+                if(count($results) > 0)
+                {
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            } catch (PDOException $e) {
+                echo "There is some problem in connection: " . $e->getMessage();
+            }
+        } 
+        public function admin($nickname, $password)
+        {
+            try {
+                $pass=password_hash($password, PASSWORD_DEFAULT);
+                $sql = "SELECT * FROM `adherent` WHERE `Nickname`= ? AND `Admin`=1";
+                $query = $this->db->prepare( $sql );
+                $query->execute( array($nickname));
+                $results = $query->fetchAll(PDO::FETCH_ASSOC);
+                if($results)
+                {
+                    if(password_verify($password,$results[0]["Password"]))
+                    {
+                        return true;
+                    }
+                }
+                else{
+                    return false;
+                }
+            } catch (PDOException $e) {
+                echo "There is some problem in connection: " . $e->getMessage();
+            }
+        } 
+        public function signin($nickname, $password)
+        {
+            try {
+                $sql = "SELECT * FROM `adherent` WHERE `Nickname`= ?";
+                $query = $this->db->prepare( $sql );
+                $query->execute( array($nickname));
+                $results = $query->fetchAll(PDO::FETCH_ASSOC);
+                if($results)
+                {
+                    if(password_verify($password,$results[0]["Password"]))
+                    {
+                        return true;
+                    }
+                }
+                else{
+                    return false;
+                }
+            } catch (PDOException $e) {
+                echo "There is some problem in connection: " . $e->getMessage();
+            }
+        } 
         public function signup($nickname, $name,$password,$adresse,$email,$phone,$cin,$ocupation,$birthdate)
         {
             try {

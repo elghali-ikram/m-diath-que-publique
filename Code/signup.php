@@ -1,17 +1,4 @@
-<?php
-  include_once('./db.php'); 
-  $funObj = new dbConnect(); 
-  $signup = $funObj->signup($_POST['nickname'],$_POST['name'],$_POST['password'],$_POST['adresse'],$_POST['email'],$_POST['phone'] ,$_POST['cin'],$_POST['type'],$_POST['bithdate'] );
-  if (! $signup) {
-    echo "erreur";
 
-  }
-  else
-  {
-    echo "data inserted";
-
-  }
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,13 +24,34 @@
             </div>
         </nav>
     </div>
-
     <div class="d-flex p-4 justify-content-center">
         <div class="bg d-flex mt-3 rounded w-75">
             <img src="./images/signin.svg" alt="" width="50%">
             <!-- FORM SIGN UP -->
             <form action="./signup.php" method="POST" class="p-5 w-75 d-flex flex-column justify-content-center gap-4" id="signupform">
                 <h1 class="text-center">Create account</h1>
+                <?php
+if(isset($_POST["signupbtn"]))
+{
+    include_once('./db.php'); 
+    $funObj = new dbConnect(); 
+    $exist = $funObj->isUserExist($_POST['nickname'],$_POST['email'],$_POST['cin']);
+    if(! $exist)
+    {
+        $signup = $funObj->signup($_POST['nickname'],$_POST['name'],$_POST['password'],$_POST['adresse'],$_POST['email'],$_POST['phone'] ,$_POST['cin'],$_POST['type'],$_POST['bithdate'] );
+        if ($signup) {
+            echo "data inserted";
+        }
+        else
+        {
+            echo "erreur";
+        }
+    }
+    else{
+        ?>
+  
+                <p class="text-center text-danger"><?php echo "Ce compte exist deja";}
+            } ?></p>
                 <div class="d-flex gap-3">
                     <div class="formvalid w-50">
                         <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name" />
@@ -100,7 +108,7 @@
                         <small></small>
                     </div>
                 </div>
-                <button type="submit" class="btn bgbtn w-50 justify-content-center" name="signupbtn" id="signupbtn">Sign up</button>
+                <button type="submit" class="btn bgbtn w-50 justify-content-center" name="signupbtn" value="signupbtn" id="signupbtn">Sign up</button>
                 <a class="text-center text-decoration-none" href=""> <i class="fa-solid fa-circle-chevron-left"></i> back to login</a>
             </form>
         </div>
