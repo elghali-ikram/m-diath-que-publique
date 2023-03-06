@@ -22,7 +22,7 @@
     </div>
     <div class="d-flex p-4 justify-content-center">
         <div class="bg d-flex mt-3 rounded w-75">
-            <img src="/Code/images/signin.svg" alt="" width="50%">
+            <img src="./images/signin.svg" alt="" width="50%">
             <!-- FORM SIGN IN -->
             <form action="" method="POST" class="p-5 w-75 d-flex flex-column justify-content-center gap-4" id="signinform">
                 <h1 class="text-center">Create account</h1>
