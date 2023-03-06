@@ -63,6 +63,8 @@
                 {
                     if(password_verify($password,$results[0]["Password"]))
                     {
+                        $_SESSION["nickname"]=$results[0]["Nickname"];
+                        $_SESSION["admin"]=$results[0]["Admin"];
                         return true;
                     }
                 }

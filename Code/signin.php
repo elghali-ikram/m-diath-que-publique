@@ -39,19 +39,20 @@ if(isset($_POST["signinbtn"]))
         if($admin) 
         {
             echo "ADMIN";
-            // header("location: ./office/office.php");
+            header("location: ./office/office.php");
         }
         else
         {
             echo "no";
-            // header("location: ./user/profile.php");
+            header("location: ./user/profile.php");
         }
     }
     else{
-        echo "mkaynch";
+        ?>
+             <p class="texte-danger">Compte no valid</p>
+             <?php
     }}
         ?>
-            
                 <div class="formvalid ">
                     <input type="text" name="nickname" class="form-control" id="nicknamesignin" placeholder="Enter your nickname" />
                     <small></small>
