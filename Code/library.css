@@ -59,6 +59,11 @@ a, .card i, .color{
   height: 200px;
   display: none;
 }
+/* DISPLAY FOR TYPE */
+.visi
+{
+  display: none;
+}
 /* VALIDATION FORM */
 small {
     color: red;

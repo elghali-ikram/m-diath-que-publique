@@ -94,11 +94,34 @@
             header("Location: ./landing.php");
             exit();
         }
-        public function insert()
-        {
-            
+        public function Insert($table, $data) {
+            $columns = implode(', ', array_keys($data));
+            $placeholders = implode(', ', array_fill(0, count($data), '?'));
+            $stmt = $this->db->prepare("INSERT INTO $table ($columns) VALUES ($placeholders)");
+            $stmt->execute(array_values($data));
+            return $stmt;
         }
-    }      
-
-
+        public function Updat($table, $data,$id) {
+            $columns = array();
+            $values = array();
+            foreach ($data as $key => $value) {
+                $columns[] = $key . ' = ?';
+                $values[] = $value;
+            }
+            $values[] = $id;
+        
+            $sql = 'UPDATE ' . $table . ' SET ' . implode(', ', $columns) . ' WHERE id = ?';
+        
+            $stmt = $this->db->prepare($sql);
+        
+            $stmt->execute($values);
+            return $stmt;
+        }
+        public function Delete($table, $id) {
+            $sql = "DELETE FROM $table WHERE id = ?";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([$id]);
+            return $stmt;
+        }
+    }
 ?>

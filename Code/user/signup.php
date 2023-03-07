@@ -11,7 +11,7 @@
                 <?php
 if(isset($_POST["signupbtn"]))
 {
-    include_once('./db.php'); 
+    include_once('../db.php'); 
     $funObj = new dbConnect(); 
     $exist = $funObj->isUserExist($_POST['nickname'],$_POST['email'],$_POST['cin']);
     if(! $exist)

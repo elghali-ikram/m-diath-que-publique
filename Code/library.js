@@ -419,10 +419,10 @@ function validate_Form_editprofile()
     validate_password_editprofile();
     validate_nickname_editprofile();
 }
-// VALIDATION ADD COLLECTION
+// VALIDATION UPDAT COLLECTION
 const form_editcollection = document.querySelector('.myFormupdat');
 const title_editcollection = document.querySelector('.titleupdat');
-const author_editcollection = document.querySelector(".authorupdat");
+const author_editcollection = document.querySelector('.authorupdat');
 const editiondate_editcollection = document.querySelector(".editiondateupdat");
 const datepurchase_editcollection = document.querySelector(".datepurchaseupdat");
 const state_editcollection = document.querySelector(".stateupdat");
@@ -528,12 +528,12 @@ const title_addcollection = document.querySelector('.titleadd');
 const author_addcollection = document.querySelector(".authoradd");
 const editiondate_addcollection = document.querySelector(".editiondateadd");
 const datepurchase_addcollection = document.querySelector(".datepurchaseadd");
-const state_addcollection = document.querySelector(".stateadd");
 const status_addcollection =document.querySelector('.statusadd');
 const type_addcollection =document.querySelector('.typeadd');
 if(form_addcollection)
 {
     form_addcollection.addEventListener('submit', (event)=>{
+        console.log("dkhel");
         validate_Form_addcollection();
         console.log(isFormValid_addcollection());
         if(isFormValid_addcollection()==true){
@@ -590,14 +590,7 @@ function validate_datepurchase_addcollection()
         setErrorFor(datepurchase_addcollection, 'champ no valid');
     }
 }
-function validate_state_addcollection()
-{
-    if(state_addcollection.selectedIndex>0) {
-        setSuccessFor(state_addcollection);
-    } else {
-        setErrorFor(state_addcollection, 'champ valid valid');
-    }
-}
+
 function validate_type_addcollection()
 {
     if(type_addcollection.selectedIndex>0) {
@@ -618,10 +611,24 @@ function validate_status_addcollection()
 function validate_Form_addcollection()
 {
     validate_title_addcollection();
-    validate_state_addcollection();
     validate_author_addcollection();
     validate_datepurchase_addcollection();
     validate_editiondate_addcollection();
     validate_type_addcollection();
     validate_status_addcollection();
 }
+type_addcollection.addEventListener("change",function() {
+    const divadd = document.querySelector('.visi');
+    const numberof = document.querySelector('.numberof');
+    divadd.style.display="block";
+    if(type_addcollection.value == "livre" || type_addcollection.value == "roman" || type_addcollection.value == "revue")
+    {
+        numberof.setAttribute('placeholder',"number of pages");
+
+    }
+    else if(type_addcollection.value == "DVD")
+    {
+        numberof.setAttribute('placeholder',"duration");
+
+    }     
+})
