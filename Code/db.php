@@ -54,6 +54,7 @@
         } 
         public function signin($nickname, $password)
         {
+            session_start();
             try {
                 $sql = "SELECT * FROM `adherent` WHERE `Nickname`= ?";
                 $query = $this->db->prepare( $sql );
@@ -87,6 +88,16 @@
                 echo "There is some problem in connection: " . $e->getMessage();
             }
         } 
+        public function logout() {
+            session_start();
+            session_destroy();
+            header("Location: ./landing.php");
+            exit();
+        }
+        public function insert()
+        {
+            
+        }
     }      
 
 

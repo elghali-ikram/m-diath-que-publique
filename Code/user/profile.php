@@ -10,22 +10,8 @@
 </head>
 <body>
     <div class="bg">
-        <nav class="navbar navbar-expand-lg text-success">
-            <div class="container-fluid d-flex justify-content-between">
-                <h1><a class="text-decoration-none" href="/Code/user.html">YOUR LIBRARY</a> </h1>
-    
-                <div class="dropstart">
-                  <div class="rounded-circle bgbtn d-flex justify-content-center align-items-center p-3"  data-bs-toggle="dropdown" aria-expanded="false">
-                    <span >I K</span>
-                  </div>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/Code/profile.html">profile</a></li>
-                    <li><a class="dropdown-item" href="/Code/borrowed_user.html">my borrowings</a></li>
-                    <li><a class="dropdown-item" href="/Code/reservation_user.html">my reservations</a></li>
-                  </ul>
-                </div>
-            </div>
-        </nav>
+        <?php session_start() ;
+        include("../includes/navbar.php") ?>
     </div>
     <div class="d-flex p-4  flex-column justify-content-center align-items-center">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
@@ -104,9 +90,8 @@
             <p class="bg_p">© Copyright  2023 | Privacy Policy</p>
          </div>
       </footer>
-
-   <script src="https://kit.fontawesome.com/0f55910cdd.js" crossorigin="anonymous" ></script>
-    <script src="../library.js"></script>
+      <script src="https://kit.fontawesome.com/0f55910cdd.js" crossorigin="anonymous" ></script>
+    <script src="library.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

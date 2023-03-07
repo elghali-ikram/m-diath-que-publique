@@ -1,35 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="library.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>library</title>
-</head>
-<body>
+<?php include("../includes/head.php") ?>
     <div class="bg">
-        <nav class="navbar navbar-expand-lg text-success">
-            <div class="container-fluid d-flex justify-content-between">
-                <h1>YOUR LIBRARY</h1>
-                <div class="d-flex gap-3 " id="" role="search">
-                    <button class="btn color" type="button">Sign in</button>
-                    <button class="btn bgbtn" type="button">Sign up</button>
-                </div>
-            </div>
-        </nav>
+    <?php include("../includes/navbar.php") ?>
     </div>
     <div class="d-flex p-4 justify-content-center">
         <div class="bg d-flex mt-3 rounded w-75">
-            <img src="./images/signin.svg" alt="" width="50%">
+            <img src="../images/signin.svg" alt="" width="50%">
             <!-- FORM SIGN IN -->
             <form action="./signin.php" method="POST" class="p-5 w-75 d-flex flex-column justify-content-center gap-4" id="signinform">
                 <h1 class="text-center">LOG IN</h1>
                 <?php
 if(isset($_POST["signinbtn"]))
 {
-    include_once('./db.php'); 
+    include_once('../db.php'); 
     $funObj = new dbConnect(); 
     if( $funObj->signin($_POST['nickname'],$_POST['password']))
     {
@@ -39,12 +21,12 @@ if(isset($_POST["signinbtn"]))
         if($admin) 
         {
             echo "ADMIN";
-            header("location: ./office/office.php");
+            header("location: ../office/office.php");
         }
         else
         {
             echo "no";
-            header("location: ./user/profile.php");
+            header("location: ../user/profile.php");
         }
     }
     else{
@@ -67,12 +49,4 @@ if(isset($_POST["signinbtn"]))
         </div>
 
     </div>
-    <script src="https://kit.fontawesome.com/0f55910cdd.js" crossorigin="anonymous"></script>
-
-    <script src="library.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
-</body>
-
-</html>
+    <?php include("../includes/footer.php") ?>

@@ -10,21 +10,8 @@
 </head>
 <body>
     <div class="bg">
-        <nav class="navbar navbar-expand-lg text-success">
-            <div class="container-fluid d-flex justify-content-between">
-              <h1><a class="text-decoration-none" href="/Code/user.html">YOUR LIBRARY</a> </h1>
-              <div class="dropstart">
-                  <div class="rounded-circle bgbtn d-flex justify-content-center align-items-center p-3"  data-bs-toggle="dropdown" aria-expanded="false">
-                    <span >I K</span>
-                  </div>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/Code/profile.html">profile</a></li>
-                    <li><a class="dropdown-item" href="/Code/borrowed_user.html">my borrowings</a></li>
-                    <li><a class="dropdown-item" href="/Code/reservation_user.html">my reservations</a></li>
-                  </ul>
-                </div>
-            </div>
-        </nav>
+    <?php session_start() ;
+        include("../includes/navbar.php") ?>
     </div>
     <div class="d-flex p-4 justify-content-center">
             <!-- FORM SEARCH -->
