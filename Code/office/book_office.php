@@ -27,24 +27,24 @@
                 <div class="d-flex gap-3">
                   <div class="w-50 formvalid">
                     <label class="form-label">Title</label>
-                    <input type="text" name="titleadd" class="form-control titleadd" value="" placeholder="Title" />
+                    <input type="text" name="titleadd" class="form-control titleadd"  placeholder="Title" />
                     <small></small>
                   </div>
                   <div class="w-50 formvalid">
                     <label class="form-label">Author</label>
-                    <input type="text" min="0" name="authoradd" class="form-control authoradd" value="" placeholder="Author" />
+                    <input type="text" min="0" name="authoradd" class="form-control authoradd"  placeholder="Author" />
                     <small></small>
                   </div>
                 </div>
                 <div class="d-flex gap-3">
                   <div class="w-50 formvalid">
                     <label class="form-label">Date Edition</label>
-                    <input type="date" name="editiondateadd" class="form-control editiondateadd" value="" placeholder="Date Edition" />
+                    <input type="date" name="editiondateadd" class="form-control editiondateadd"  placeholder="Date Edition" />
                     <small></small>
                   </div>
                   <div class="w-50 formvalid">
-                    <label f class="form-label">Date of purchase</label>
-                    <input type="date" name="datepurchaseadd " class="form-control datepurchaseadd" value="" placeholder="date of purchase" />
+                    <label  class="form-label">Date of purchase</label>
+                    <input type="date" name="datepurchaseadd" class="form-control datepurchaseadd"  placeholder="date of purchase" />
                     <small></small>
                   </div>
                 </div>
@@ -305,25 +305,41 @@
         include_once('../db.php'); 
         $funObj = new dbConnect(); 
 
-        $exist = $funObj->Delete('types', 1); 
-        echo "knj";
+        // $exist = $funObj->Delete('types', 1); 
+        // echo "knj";
 
-        if($exist)
-        {
-          echo "kayn";
-        }
-        else
-        {
-          echo "walo";
-        }
+        // if($exist)
+        // {
+        //   echo "kayn";
+        // }
+        // else
+        // {
+        //   echo "walo";
+        // }
 
-  // $data = array(
-  //   'Type_Code' => NULL,
-  //   'Type_Name' => $_POST['typeadd'],
-  //   'Type_Type' => $_POST['numberof']);
-  //   if(isset($_POST['addBtn']))
-  //   {
+  $datacategorie = array(
+    'Type_Code' => NULL,
+    'Type_Name' => $_POST['typeadd'],
+    'Type_Type' => $_POST['numberof']);
+    if(isset($_POST['addBtn']))
+    {
+      echo $_POST['datepurchaseadd'];
+       $exist = $funObj->Insert('types', $datacategorie);
+       echo $exist;
+       $data = array(
+        'ouvrages_Code' => NULL,
+        'Title' => $_POST['titleadd'],
+        'Author_Name' => $_POST['authoradd'],
+        'Cover_Image' => $_FILES['fileInput']['name'],
+        'State' => 'available',
+        'Edition_Date' => $_POST['editiondateadd'],
+        'Buy_Date' => $_POST['datepurchaseadd'],
+        'Status' => $_POST['statusadd'],
+        'Type_Code' =>  $exist,
+      );
+      $insert = $funObj->Insert('ouvrages', $data);
+      echo $insert;
+    }
 
-       
-  //   }
+    
   ?>

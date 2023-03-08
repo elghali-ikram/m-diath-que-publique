@@ -22,13 +22,13 @@
             <div class="h-100 card">
                 <img src="../images/library.jpg" alt="" class="img-fluid opacity-75 rounded-start" width="100%" height="410px">
                 <div class="card-img-overlay text-center fw-bold align-content-center top-50">
-                    <button class="btn bg_office w-75"><a class="text-decoration-none" href="../office/reservation_office.html">Reservations</a> </button>
+                    <button class="btn bg_office w-75"><a class="text-decoration-none" href="./reservation_office.php">Reservations</a> </button>
                 </div>
             </div>
             <div class="h-100 card">
                 <img src="../images/library.jpg" alt="" class="img-fluid opacity-75 rounded-start" width="100%" height="410px">
                 <div class="card-img-overlay text-center fw-bold align-content-center top-50">
-                    <button class="btn bg_office w-75"> <a href="../office/book_office.html" class="text-decoration-none">Ouvrages</a> </button>
+                    <button class="btn bg_office w-75"> <a href="./book_office.php" class="text-decoration-none">Ouvrages</a> </button>
                 </div>
             </div>
         </div>

@@ -33,7 +33,6 @@
         public function admin($nickname, $password)
         {
             try {
-                $pass=password_hash($password, PASSWORD_DEFAULT);
                 $sql = "SELECT * FROM `adherent` WHERE `Nickname`= ? AND `Admin`=1";
                 $query = $this->db->prepare( $sql );
                 $query->execute( array($nickname));
@@ -99,9 +98,10 @@
             $placeholders = implode(', ', array_fill(0, count($data), '?'));
             $stmt = $this->db->prepare("INSERT INTO $table ($columns) VALUES ($placeholders)");
             $stmt->execute(array_values($data));
-            return $stmt;
+            $lastInsertId = $this->db->lastInsertId();
+            return $lastInsertId;
         }
-        public function Updat($table, $data,$id) {
+        public function Updat($table, $data,$id, $idname) {
             $columns = array();
             $values = array();
             foreach ($data as $key => $value) {
@@ -110,17 +110,31 @@
             }
             $values[] = $id;
         
-            $sql = 'UPDATE ' . $table . ' SET ' . implode(', ', $columns) . ' WHERE id = ?';
+            $sql = 'UPDATE ' . $table . ' SET ' . implode(', ', $columns) . ' WHERE '.$idname .' = ?';
         
             $stmt = $this->db->prepare($sql);
         
             $stmt->execute($values);
             return $stmt;
         }
-        public function Delete($table, $id) {
-            $sql = "DELETE FROM $table WHERE id = ?";
+        public function Delete($table,$data, $id) {
+            $columns = implode(', ', array_keys($data));
+            $sql = "DELETE FROM $table WHERE  $columns = ?";
             $stmt = $this->db->prepare($sql);
             $stmt->execute([$id]);
+            return $stmt;
+        }
+        public function select($table, $rows="*", $where=null) {
+            $query = "SELECT $rows FROM $table";
+            $params = array();
+            if ($where != null) {
+                $query .= " WHERE $where";
+            }
+        
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute($params);
+        
+            $this->sql = $stmt;
             return $stmt;
         }
     }

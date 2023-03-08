@@ -27,7 +27,7 @@
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
             <a href="./user/signin.php"> <button class="btn bgbtn w-75" type="button">Book Now</button></a>
          </div>
-         <img src="./images/landing.svg" alt="landing image" width="55%" >
+         <img src="./images/landing.svg" alt="landing image" width="58%" >
       </div>
       <footer class="d-flex  flex-column align-items-center">
          <div class="d-flex  gap-3  p-3">
