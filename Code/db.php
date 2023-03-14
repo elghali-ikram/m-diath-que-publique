@@ -96,10 +96,12 @@
         public function Insert($table, $data) {
             $columns = implode(', ', array_keys($data));
             $placeholders = implode(', ', array_fill(0, count($data), '?'));
-            $stmt = $this->db->prepare("INSERT INTO $table ($columns) VALUES ($placeholders)");
+            $query="INSERT INTO $table ($columns) VALUES ($placeholders)";
+            $stmt = $this->db->prepare($query);
             $stmt->execute(array_values($data));
             $lastInsertId = $this->db->lastInsertId();
             return $lastInsertId;
+
         }
         public function Updat($table, $data,$id, $idname) {
             $columns = array();
@@ -109,17 +111,13 @@
                 $values[] = $value;
             }
             $values[] = $id;
-        
             $sql = 'UPDATE ' . $table . ' SET ' . implode(', ', $columns) . ' WHERE '.$idname .' = ?';
-        
             $stmt = $this->db->prepare($sql);
-        
             $stmt->execute($values);
             return $stmt;
         }
-        public function Delete($table,$data, $id) {
-            $columns = implode(', ', array_keys($data));
-            $sql = "DELETE FROM $table WHERE  $columns = ?";
+        public function Delete($table,$idname, $id) {
+            $sql = "DELETE FROM $table WHERE  $idname = ?";
             $stmt = $this->db->prepare($sql);
             $stmt->execute([$id]);
             return $stmt;
@@ -130,12 +128,47 @@
             if ($where != null) {
                 $query .= " WHERE $where";
             }
-        
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $this->db->prepare($query);
             $stmt->execute($params);
-        
-            $this->sql = $stmt;
             return $stmt;
         }
+        public function selectWithPagination($table, $rows="*", $where=null, $perPage=1) {
+            $params = array();
+            $query = "SELECT $rows FROM $table";
+            if ($where != null) {
+                $query .= " WHERE $where";
+            }
+            // Get the total number of records
+            $countQuery = "SELECT COUNT(*) as count FROM $table";
+            if ($where != null) {
+                $countQuery .= " WHERE $where";
+            }
+            $countStmt = $this->db->prepare($countQuery);
+            $countStmt->execute($params);
+            $countResult = $countStmt->fetch(PDO::FETCH_ASSOC);
+            $totalCount = $countResult['count'];
+            $currentPage = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+            // Calculate the offset and limit for the current page
+            $offset = ($currentPage - 1) * $perPage;
+            $limit = $perPage;
+            $query .= " LIMIT $limit OFFSET $offset";
+        
+            $stmt = $this->db->prepare($query);
+            $stmt->execute($params);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+            // Calculate the total number of pages
+            $totalPages = ceil($totalCount / $perPage);
+        
+            // Return an array containing the result, the total number of records,the current page, and the total number of pages
+            return array(
+                'query'=>$query,
+                'result' => $result,
+                'currentpage'=>$currentPage,
+                'totalCount' => $totalCount,
+                'totalPages' => $totalPages
+            );
+        }
+        
     }
 ?>

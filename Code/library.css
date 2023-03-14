@@ -53,10 +53,18 @@ a, .card i, .color{
   height: 100%;
   opacity: 0;
 }
-.previewImageupdat,
+
 #previewImage {
   width: 100%;
   height: 200px;
+  display: none;
+}
+.previewImageupdat{
+  width: 100%;
+  height: 200px;
+}
+.iconupdat
+{
   display: none;
 }
 /* DISPLAY FOR TYPE */

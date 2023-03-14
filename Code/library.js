@@ -617,18 +617,44 @@ function validate_Form_addcollection()
     validate_type_addcollection();
     validate_status_addcollection();
 }
-type_addcollection.addEventListener("change",function() {
-    const divadd = document.querySelector('.visi');
-    const numberof = document.querySelector('.numberof');
-    divadd.style.display="block";
-    if(type_addcollection.value == "livre" || type_addcollection.value == "roman" || type_addcollection.value == "revue")
-    {
-        numberof.setAttribute('placeholder',"number of pages");
+if(type_addcollection)
+{
+    type_addcollection.addEventListener("change",function() {
+        const divadd = document.querySelector('.visi');
+        const labeladd = document.querySelector('.visi label');
+        const numberof = document.querySelector('.numberof');
+        divadd.style.display="block";
+        if(type_addcollection.value == "livre" || type_addcollection.value == "roman" || type_addcollection.value == "revue")
+        {
+            numberof.setAttribute('placeholder',"number of pages");
+            labeladd.innerHTML='Number of pages';
+    
+        }
+        else if(type_addcollection.value == "DVD")
+        {
+            numberof.setAttribute('placeholder',"duration");
+            labeladd.innerHTML='Duration';
+        }     
+    })
 
-    }
-    else if(type_addcollection.value == "DVD")
-    {
-        numberof.setAttribute('placeholder',"duration");
+}
+if(type_editcollection)
+{
+    type_editcollection.addEventListener("change",function() {
+        const labelupdat = document.querySelector('.visiupdat label');
+        const numberofupdat = document.querySelector('.numberofupdat');
+        if(type_editcollection.value == "livre" || type_editcollection.value == "roman" || type_editcollection.value == "revue")
+        {
+            numberofupdat.setAttribute('placeholder',"number of pages");
+            labelupdat.innerHTML='Number of pages';
+    
+        }
+        else if(type_editcollection.value == "DVD")
+        {
+            numberofupdat.setAttribute('placeholder',"duration");
+            labelupdat.innerHTML='Duration';
+        }     
+    })
 
-    }     
-})
+}
+
