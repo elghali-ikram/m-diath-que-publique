@@ -1,5 +1,4 @@
 <?php include("../includes/head.php") ?>
-
 <div class="bg">
   <?php session_start();
   include("../includes/navbar.php") ?>
@@ -20,7 +19,7 @@
       <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
           <div class="col-md-4">
-            <img src="../images/<?= $row['Cover_Image'] ?>" class="img-fluid rounded-start" alt="..." width="200px">
+            <img src="../images/<?= $row['Cover_Image'] ?>" class="img-fluid rounded-start" alt="...">
           </div>
           <div class="col-md-8">
             <div class="card-body">
@@ -41,7 +40,7 @@
     <?php endforeach;?>
   </div>
 </div>
-<footer class="d-flex  flex-column align-items-center bg bottom-0">
+<footer class="d-flex   flex-column align-items-center bg bottom-0">
   <div class="d-flex  gap-3  p-3">
     <a href="http://" class="btn text-light"><i class="fa-brands fa-facebook"></i></a>
     <a href="http://" class="btn text-light"><i class="fa-brands fa-google"></i></a>

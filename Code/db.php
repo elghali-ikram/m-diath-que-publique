@@ -122,15 +122,19 @@
             $stmt->execute([$id]);
             return $stmt;
         }
-        public function select($table, $rows="*", $where=null) {
-            $query = "SELECT $rows FROM $table";
+        public function Select($table, $rows="*", $where=null) {
             $params = array();
+            $query = "SELECT $rows FROM $table";
             if ($where != null) {
                 $query .= " WHERE $where";
             }
             $stmt = $this->db->prepare($query);
             $stmt->execute($params);
-            return $stmt;
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return array(
+                'query'=> $query,
+                'result' => $result,
+            );
         }
         public function selectWithPagination($table, $rows="*", $where=null, $perPage=1) {
             $params = array();
