@@ -45,36 +45,26 @@ if (fileInputs) {
       });
     
 }
-
+function passwordhide(pass) {
+    const type = pass.getAttribute('type') === 'password' ? 'text' : 'password';
+    pass.setAttribute('type', type);
+    // toggle the eye slash icon
+    const icon=this.querySelector("i")
+    icon.classList.toggle('fa-eye');
+    
+}
 // HIDE SHOW PASSWORD SIGNUP
  const togglePassword = document.querySelector('#togglePassword');
  const password = document.querySelector('#password');
  if(togglePassword)
  {
-    togglePassword.addEventListener('click', function () {
-        // toggle the type attribute
-        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-        password.setAttribute('type', type);
-        // toggle the eye slash icon
-        const icon=this.querySelector("i")
-        icon.classList.toggle('fa-eye');
-     });
+    togglePassword.addEventListener('click', passwordhide(password));
  }
-
-
 // HIDE SHOW CONFIRM PASSWORD SIGNUP
 const togglePasswordconfirm = document.querySelector('#togglePasswordconfirm');
 const passwordconfirm = document.querySelector('#confirmpassword');
 if (togglePasswordconfirm) {
-    togglePasswordconfirm.addEventListener('click', function () {
-        // toggle the type attribute
-        const type = passwordconfirm.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordconfirm.setAttribute('type', type);
-        // toggle the eye slash icon
-        const iconconfirm=this.querySelector("i")
-        iconconfirm.classList.toggle('fa-eye');
-      });
-    
+    togglePasswordconfirm.addEventListener('click', passwordhide(passwordconfirm));
 }
 
 
@@ -280,7 +270,6 @@ function validate_passwordsignin()
 }
 function validate_Form_signin()
 {
-
     validate_passwordsignin();
     validate_nicknamesignin();
 }
@@ -299,7 +288,6 @@ const confirmpassword_editprofile =document.querySelector('#confirmpasswordedit'
 if(form_editprofile)
 {
     form_editprofile.addEventListener('submit', (event)=>{
-        console.log("dkhel");
         validate_Form_editprofile();
         console.log(isFormValid_editprofile());
         if(isFormValid_editprofile()==true){
@@ -419,6 +407,13 @@ function validate_Form_editprofile()
     validate_password_editprofile();
     validate_nickname_editprofile();
 }
+const togglePasswordconfirm_editprofile = document.querySelector('#togglePasswordconfirmedit');
+console.log(togglePasswordconfirm_editprofile);
+if(togglePasswordconfirm_editprofile)
+{
+    togglePasswordconfirm_editprofile.addEventListener('click', passwordhide(confirmpassword_editprofile));
+}
+
 // VALIDATION UPDAT COLLECTION
 const form_editcollection = document.querySelector('.myFormupdat');
 const title_editcollection = document.querySelector('.titleupdat');
@@ -657,4 +652,5 @@ if(type_editcollection)
     })
 
 }
+
 

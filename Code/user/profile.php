@@ -12,8 +12,10 @@
     include_once('../db.php');
     $obj = new dbConnect();
     echo $_SESSION["nickname"];
-    $result = $obj->Select('adherent', '*', "1");
-    print_r($result['query']);
+    $session=$_SESSION["nickname"];
+    $where="Nickname='$session'";
+    $result = $obj->Select('adherent', '*', $where);
+    // print_r($result['result']);
     // print_r($result);
     // Loop through the result and display the records
     ?>
@@ -21,41 +23,41 @@
                 <h4 class="text-center">Edit your account</h4>
                 <div class="d-flex gap-3">
                     <div class="formvalid w-50">
-                        <input type="text" name="name" class="form-control" id="nameedit" placeholder="Enter your name" />
+                        <input type="text" name="name" class="form-control" id="nameedit" placeholder="Enter your name" value="<?= $result['result']["Name"]?>" />
                         <small></small>
                     </div>
                     <div class="formvalid w-50">
-                        <input type="text" name="cin" class="form-control" id="cinedit" placeholder="Enter your cin" />
-                        <small></small>
-                    </div>
-                </div>
-                <div class="d-flex gap-3">
-                    <div class="formvalid w-50">
-                        <input type="number" name="phone" class="form-control" id="phoneedit" placeholder="Enter your phone" />
-                        <small></small>
-                    </div>
-                    <div class="formvalid w-50">
-                        <input type="email" name="email" class="form-control" id="emailedit" placeholder="Enter your email" />
+                        <input type="text" name="cin" class="form-control" id="cinedit" placeholder="Enter your cin" value="<?= $result['result']["CIN"]?>"/>
                         <small></small>
                     </div>
                 </div>
                 <div class="d-flex gap-3">
                     <div class="formvalid w-50">
-                        <input type="text" name="adresse" class="form-control" id="adresseedit" placeholder="Enter your adresse" />
+                        <input type="number" name="phone" class="form-control" id="phoneedit" placeholder="Enter your phone" value="<?= $result['result']["Phone"]?>"/>
                         <small></small>
                     </div>
                     <div class="formvalid w-50">
-                        <input type="text" name="type" class="form-control" id="typeedit" placeholder="Enter your type" />
+                        <input type="email" name="email" class="form-control" id="emailedit" placeholder="Enter your email" value="<?= $result['result']["Email"]?>"/>
+                        <small></small>
+                    </div>
+                </div>
+                <div class="d-flex gap-3">
+                    <div class="formvalid w-50">
+                        <input type="text" name="adresse" class="form-control" id="adresseedit" placeholder="Enter your adresse" value="<?= $result['result']["Address"]?>"/>
+                        <small></small>
+                    </div>
+                    <div class="formvalid w-50">
+                        <input type="text" name="type" class="form-control" id="typeedit" placeholder="Enter your type" value="<?= $result['result']["Occupation"]?>"/>
                         <small></small>
                     </div>
                 </div>
                 <div class="d-flex  gap-3">
                     <div class="formvalid  w-50">
-                        <input type="text" name="nickname" class="form-control" id="nicknameedit" placeholder="Enter your nickname" />
+                        <input type="text" name="nickname" class="form-control" id="nicknameedit" placeholder="Enter your nickname" value="<?= $result['result']["Nickname"]?>"/>
                         <small></small>
                     </div>
                     <div class="formvalid w-50">
-                        <input type="date" name="bithdate" class="form-control" id="bithdateedit" placeholder="Enter your bithdate"  />
+                        <input type="date" name="bithdate" class="form-control" id="bithdateedit" placeholder="Enter your bithdate"  value="<?= $result['result']["Birth_Date"]?>"/>
                         <small></small>
                     </div>
                 </div>
@@ -75,7 +77,7 @@
                         <small></small>
                     </div>
                 </div>
-                <button type="submit" class="btn bgbtn" name="edit_profile" id="edit_profile">Edit</button>
+                <button type="submit" class="btn bgbtn" value="edit_profile" name="edit_profile" id="edit_profile">Edit</button>
             </form>
         </div>
     </div>
@@ -90,3 +92,9 @@
          </div>
       </footer>
       <?php include("../includes/footer.php") ?>
+      <?php
+        if (isset($_POST["edit_profile"])) {
+            print_r($_POST);
+            # code...
+        }
+      ?>
