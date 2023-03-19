@@ -425,6 +425,18 @@ if(togglePasswordconfirm_editprofile)
         icon.classList.toggle('fa-eye');
     });
 }
+const togglePassword_editprofile = document.querySelector('#togglePasswordedit');
+console.log(togglePassword_editprofile);
+if(togglePassword_editprofile)
+{
+    togglePassword_editprofile.addEventListener('click', function() {
+        const type = password_editprofile.getAttribute('type') === 'password' ? 'text' : 'password';
+        password_editprofile.setAttribute('type', type);
+        // toggle the eye slash icon
+        const icon=this.querySelector("i")
+        icon.classList.toggle('fa-eye');
+    });
+}
 
 // VALIDATION UPDAT COLLECTION
 const form_editcollection = document.querySelector('.myFormupdat');

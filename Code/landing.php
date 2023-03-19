@@ -18,7 +18,8 @@
          <a href="./user/signup.php"><button class="btn bgbtn" type="button">Sign up</button></a>
        </div>
    </div>
- </nav>      <div class="d-flex  justify-content-between" >
+ </nav>     
+  <div class="d-flex  justify-content-between" >
          <div class="p-5  d-flex flex-column justify-content-center"> 
             <h1>Lorem ipsum dolor sit amet</h1>
           <p class="p-3 bg_p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 

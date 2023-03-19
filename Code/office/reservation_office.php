@@ -19,6 +19,14 @@
         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
         <div class="d-flex justify-content-center gap-2 flex-column w-100 p-5">
+        <?php
+  include_once('../db.php');
+  $db = new dbConnect();
+  $result = $db->selectWithPagination('reservation JOIN ouvrages ON reservation.ouvrages_Code=ouvrages.ouvrages_Code JOIN adherent ON reservation.Nickname=adherent.Nickname LEFT JOIN emprunt ON emprunt.Nickname=adherent.Nickname', 'reservation.Reservation_Expiration_Date, ouvrages.Title,ouvrages.Cover_Image,adherent.Name, emprunt.emprunt_Date', null, 2);
+  // Loop through the result and display the records
+  print_r($result['result']);
+  foreach ($result['result'] as $row) :
+  ?>
             <div class="d-flex justify-content-between bg_res h-50 rounded p-3 "  >
                 <div class="d-flex gap-5 ">
                     <img src="../images/book.jpg" class="img-fluid rounded" alt="..." width="100px">
@@ -39,69 +47,31 @@
                       </form>
                 </div>
             </div>
-            <div class="d-flex justify-content-between bg_res h-50 rounded p-3 " >
-                <div class="d-flex gap-5">
-                    <img src="../images/book.jpg" class="img-fluid rounded" alt="..." width="100px">
-                    <div class="d-flex flex-column bg_p">
-                        <h4>jhbjfnd</h4>
-                        <p><i class="fa-regular fa-calendar"></i>  12/12/2012</p>
-                        <p><i class="fa-solid fa-user"></i> hussend</p>
-                    </div>
-                </div>
-                <div class="d-flex gap-3 p-4">
-                    <form action="reserve.php" method="post">
-                        <input type="hidden" name="id">
-                        <button type="submit" class="btn bgbtn" name="emprunt" >Emprunt</button>
-                      </form>
-                      <form action="reserve.php" method="post">
-                        <input type="hidden" name="id">
-                        <button type="submit" class="btn bgbtn" name="return" >Return</button>
-                      </form>
-                </div>
-            </div>
-            <div class="d-flex justify-content-between bg_res h-50 rounded p-3 " >
-                <div class="d-flex gap-5">
-                    <img src="../images/book.jpg" class="img-fluid rounded" alt="..." width="100px">
-                    <div class="d-flex flex-column bg_p">
-                        <h4>jhbjfnd</h4>
-                        <p><i class="fa-regular fa-calendar"></i>  12/12/2012</p>
-                        <p><i class="fa-solid fa-user"></i> hussend</p>
-                    </div>
-                </div>
-                <div class="d-flex gap-3 p-4">
-                    <form action="reserve.php" method="post">
-                        <input type="hidden" name="id">
-                        <button type="submit" class="btn bgbtn" name="emprunt" >Emprunt</button>
-                      </form>
-                      <form action="reserve.php" method="post">
-                        <input type="hidden" name="id">
-                        <button type="submit" class="btn bgbtn" name="return" >Return</button>
-                      </form>
-                </div>
-            </div>
-            <div class="d-flex justify-content-between bg_res h-50 rounded p-3 " >
-                <div class="d-flex gap-5">
-                    <img src="../images/book.jpg" class="img-fluid rounded" alt="..." width="100px">
-                    <div class="d-flex flex-column bg_p">
-                        <h4>jhbjfnd</h4>
-                        <p><i class="fa-regular fa-calendar"></i>  12/12/2012</p>
-                        <p><i class="fa-solid fa-user"></i> hussend</p>
-                    </div>
-                </div>
-                <div class="d-flex gap-3 p-4">
-                    <form action="reserve.php" method="post">
-                        <input type="hidden" name="id">
-                        <button type="submit" class="btn bgbtn" name="emprunt" >Emprunt</button>
-                      </form>
-                      <form action="reserve.php" method="post">
-                        <input type="hidden" name="id">
-                        <button type="submit" class="btn bgbtn" name="return" >Return</button>
-                      </form>
-                </div>
-            </div>
-
         </div>
+        <?php endforeach; ?>
      </div>
+     <!-- PAGINATION -->
+<div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <?php
+      if ($result['currentpage'] > 1) {
+        echo '<li class="page-item"> <a  class="page-link text-black " href="?page=' . ($result['currentpage'] - 1) . '"><i class="fa-solid fa-chevron-left"></i></a> </li>';
+      }
+      for ($i = 1; $i <= $result['totalPages']; $i++) :
+        if ($i == $result['currentpage']) {
+          echo '<li class="page-item active"> <a  class="page-link  bg-black" href="#">' . $i . '</a> </li>';
+        } else {
+          echo '<li class="page-item"> <a  class="page-link text-black " href="?page=' . $i . '">' . $i . '</a> </li>';
+        }
+      endfor;
+      if ($result['currentpage'] < $result['totalPages']) {
+        echo '<li class="page-item"> <a class="page-link text-black " href="?page=' . ($result['currentpage'] + 1) . '"><i class="fa-solid fa-chevron-right"></i></a> </li>';
+      }
+      ?>
+    </ul>
+  </nav>
+</div>
 
 
     <footer class="d-flex  flex-column align-items-center bg bottom-0">
