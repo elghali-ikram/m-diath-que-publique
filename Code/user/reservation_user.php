@@ -1,3 +1,4 @@
+
 <?php include("../includes/head.php") ?>
 <div class="bg">
   <?php session_start();
@@ -12,7 +13,7 @@
     <?php
     include_once('../db.php');
     $db = new dbConnect();
-    $result = $db->selectWithPagination('reservation JOIN ouvrages ON reservation.ouvrages_Code=ouvrages.ouvrages_Code JOIN types ON ouvrages.Type_Code=types.Type_Code', '*', null, 2);
+    $result = $db->selectWithPagination('reservation JOIN ouvrages ON reservation.ouvrages_Code=ouvrages.ouvrages_Code JOIN types ON ouvrages.Type_Code=types.Type_Code', '*', 'reservation.Reservation_confirm=0', 2);
     // Loop through the result and display the records
     foreach ($result['result'] as $row) :
     ?>
@@ -55,10 +56,10 @@
 <?php
 include_once('../db.php');
 $funObj = new dbConnect();
+$dataupdat= array(
+  'State' => 'available'
+);
 if (isset($_POST['cancel'])) {
-  $dataupdat= array(
-    'State' => 'available'
-  );
   $delet = $funObj->Delete('reservation','Reservation_Code', $_POST['codereserve']);
   $updat = $funObj->Updat('ouvrages', $dataupdat, $_POST['ouvragecode'], 'ouvrages_Code');
 }

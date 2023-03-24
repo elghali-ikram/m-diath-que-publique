@@ -19,7 +19,7 @@
        </div>
    </div>
  </nav>     
-  <div class="d-flex  justify-content-between" >
+  <div class="d-flex  justify-content-between">
          <div class="p-5  d-flex flex-column justify-content-center"> 
             <h1>Lorem ipsum dolor sit amet</h1>
           <p class="p-3 bg_p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
@@ -30,19 +30,24 @@
          </div>
          <img src="./images/landing.svg" alt="landing image" width="58%" >
       </div>
-      <footer class="d-flex  flex-column align-items-center">
-         <div class="d-flex  gap-3  p-3">
-            <a href="http://" class="btn text-light"><i class="fa-brands fa-facebook"></i></a>
-            <a href="http://" class="btn text-light"><i class="fa-brands fa-google"></i></a>
-            <a href="http://" class="btn text-light"><i class="fa-brands fa-twitter"></i></a>
-         </div>
-         <div class="">
-            <p class="bg_p">© Copyright  2023 | Privacy Policy</p>
-         </div>
-      </footer>
 </div>
 <script src="https://kit.fontawesome.com/0f55910cdd.js" crossorigin="anonymous" ></script>
     <script src="library.js"></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js" ></script>
 </body>
 </html>
+<?php
+include_once('./db.php');
+$funObj = new dbConnect();
+$dataupdat= array(
+  'State' => 'available'
+);
+$select= $funObj->Select('reservation','*', "Reservation_confirm=0");
+foreach ($select["result"] as $row) {
+  if($row["Reservation_Expiration_Date"] < date("Y-m-d"))
+  {
+    $delet = $funObj->Delete('reservation','Reservation_Code', $row["Reservation_Code"]);
+    $updat = $funObj->Updat('ouvrages', $dataupdat, $row["ouvrages_Code"], 'ouvrages_Code');
+  }
+}
+?>

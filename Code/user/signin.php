@@ -15,18 +15,27 @@ if(isset($_POST["signinbtn"]))
     $funObj = new dbConnect(); 
     if( $funObj->signin($_POST['nickname'],$_POST['password']))
     {
-        echo "exist";
         $funObj->signin($_POST['nickname'],$_POST['password']);
         $admin = $funObj->admin($_POST['nickname'],$_POST['password']);
         if($admin) 
         {
-            echo "ADMIN";
             header("location: ../office/office.php");
         }
         else
         {
-            echo "no";
-            header("location: ../user/profile.php");
+            $nickname=$_POST['nickname'];
+            $where="Nickname='$nickname'";
+            $select=$funObj->Select("adherent",$rows="*", $where);
+            $select["result"][0]["Nickname"];
+            if($select["result"][0]["Penalty_Count"]>=3)
+            {
+                echo "your penality is".$select["result"][0]["Penalty_Count"];
+
+            }
+            else
+            {
+                header("location: ../user/user.php");
+            }
         }
     }
     else{

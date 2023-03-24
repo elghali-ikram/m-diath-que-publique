@@ -130,7 +130,7 @@
             }
             $stmt = $this->db->prepare($query);
             $stmt->execute($params);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $result = $stmt->fetchALL(PDO::FETCH_ASSOC);
             return array(
                 'query'=> $query,
                 'result' => $result,
@@ -142,7 +142,6 @@
             if ($where != null) {
                 $query .= " WHERE $where";
             }
-            // Get the total number of records
             $countQuery = "SELECT COUNT(*) as count FROM $table";
             if ($where != null) {
                 $countQuery .= " WHERE $where";
@@ -164,7 +163,6 @@
             // Calculate the total number of pages
             $totalPages = ceil($totalCount / $perPage);
         
-            // Return an array containing the result, the total number of records,the current page, and the total number of pages
             return array(
                 'query'=>$query,
                 'result' => $result,

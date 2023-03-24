@@ -11,7 +11,7 @@ if(isset($_SESSION["nickname"]))
                     <span >I K</span>
                   </div>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="./office.php">profile</a></li>
+                    <li><a class="dropdown-item" href="./office.php">Home</a></li>
                     <li><a class="dropdown-item" href="./book_office.php">Our collection</a></li>
                     <li><a class="dropdown-item" href="./reservation_office.php"> Reservations</a></li>
                     <li><a class="dropdown-item" href="../logout.php"> Logout</a></li>

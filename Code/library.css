@@ -42,7 +42,7 @@ a, .card i, .color{
 }
 .bg_res
 {
-    background: linear-gradient(0.25turn, #104C59,  #D6B38B);
+    background: linear-gradient(0.25turn,  #D6B38B, #104C59);
 }
 
 /* DISPLAY IIMAGE IN INPUT TYPE FILE */

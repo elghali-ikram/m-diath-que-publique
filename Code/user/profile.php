@@ -14,43 +14,43 @@
         $session = $_SESSION["nickname"];
         $where = "Nickname='$session'";
         $result = $obj->Select('adherent', '*', $where);
-
+    
         ?>
         <form action="./profile.php" method="POST" class="p-5  d-flex flex-column  justify-content-center gap-4  w-100" id="editprofileform">
             <h4 class="text-center">Edit your account</h4>
             <div class="d-flex gap-3">
                 <div class="formvalid w-50">
-                    <input type="text" name="name" class="form-control" id="nameedit" placeholder="Enter your name" value="<?= $result['result']["Name"] ?>" />
+                    <input type="text" name="name" class="form-control" id="nameedit" placeholder="Enter your name" value="<?= $result['result'][0]["Name"] ?>" />
                     <small></small>
                 </div>
                 <div class="formvalid w-50">
-                    <input type="text" name="cin" class="form-control" id="cinedit" placeholder="Enter your cin" value="<?= $result['result']["CIN"] ?>" />
-                    <small></small>
-                </div>
-            </div>
-            <div class="d-flex gap-3">
-                <div class="formvalid w-50">
-                    <input type="number" name="phone" class="form-control" id="phoneedit" placeholder="Enter your phone" value="<?= $result['result']["Phone"] ?>" />
-                    <small></small>
-                </div>
-                <div class="formvalid w-50">
-                    <input type="email" name="email" class="form-control" id="emailedit" placeholder="Enter your email" value="<?= $result['result']["Email"] ?>" />
+                    <input type="text" name="cin" class="form-control" id="cinedit" placeholder="Enter your cin" value="<?= $result['result'][0]["CIN"] ?>" />
                     <small></small>
                 </div>
             </div>
             <div class="d-flex gap-3">
                 <div class="formvalid w-50">
-                    <input type="date" name="bithdate" class="form-control" id="bithdateedit" placeholder="Enter your bithdate" value="<?= $result['result']["Birth_Date"] ?>" />
+                    <input type="number" name="phone" class="form-control" id="phoneedit" placeholder="Enter your phone" value="<?= $result['result'][0]["Phone"] ?>" />
                     <small></small>
                 </div>
                 <div class="formvalid w-50">
-                    <input type="text" name="type" class="form-control" id="typeedit" placeholder="Enter your type" value="<?= $result['result']["Occupation"] ?>" />
+                    <input type="email" name="email" class="form-control" id="emailedit" placeholder="Enter your email" value="<?= $result['result'][0]["Email"] ?>" />
+                    <small></small>
+                </div>
+            </div>
+            <div class="d-flex gap-3">
+                <div class="formvalid w-50">
+                    <input type="date" name="bithdate" class="form-control" id="bithdateedit" placeholder="Enter your bithdate" value="<?= $result['result'][0]["Birth_Date"] ?>" />
+                    <small></small>
+                </div>
+                <div class="formvalid w-50">
+                    <input type="text" name="type" class="form-control" id="typeedit" placeholder="Enter your type" value="<?= $result['result'][0]["Occupation"] ?>" />
                     <small></small>
                 </div>
             </div>
             <div class="d-flex  gap-3">
                 <div class="formvalid w-100">
-                    <input type="text" name="adresse" class="form-control" id="adresseedit" placeholder="Enter your adresse" value="<?= $result['result']["Address"] ?>" />
+                    <input type="text" name="adresse" class="form-control" id="adresseedit" placeholder="Enter your adresse" value="<?= $result['result'][0]["Address"] ?>" />
                     <small></small>
                 </div>
             </div>
