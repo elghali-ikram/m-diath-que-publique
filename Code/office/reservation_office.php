@@ -68,7 +68,42 @@
       </ul>
     </nav>
   </div>
+<?php
+if(isset($_POST['return'])) 
+{
+  echo "fkhel";
+  $data_updat = array(
+    'emprunt_Return_Date' => date("Y-m-d"),
+    'emprunt_confirm' => 1,
+  );
+  $data_ouvrages = array(
+    'state' => "available",
+  );
+  $value='Penalty_Count + 1';
+  $data_adherent = array(
+    'Penalty_Count' => $value,
+  );
+  print_r($data_adherent);
+  $reservation=$_POST['Reservation_Code'];
+  $where="Reservation_Code='$reservation'";
+  $select=$funObj->Select("emprunt",$rows="*", $where);
+  $date_today=new DateTime();
+  $dete=new DateTime($select["result"][0]["emprunt_Date"]);
+  $diff = $date_today->diff($dete);
+  if ($diff->d > 15) {
+    echo "dkhel";
+    // $updat = $funObj->Updat('adherent', $$data_adherent, $_POST['Nickname'], 'Nickname');
+  }
+  else
+  {
+    echo "dkhel";
 
+
+  }
+  // $updat = $funObj->Updat('emprunt', $data_updat, $_POST['Reservation_Code'], 'Reservation_Code');
+  // $updat = $funObj->Updat('ouvrages', $data_ouvrages, $_POST['ouvrages_Code'], 'ouvrages_Code');
+}  
+?>
 
   <footer class="d-flex  flex-column align-items-center bg bottom-0">
     <div class="d-flex  gap-3  p-3">
@@ -121,7 +156,7 @@ if(isset($_POST['return']))
   // $reservation=$_POST['Reservation_Code'];
   // $where="Reservation_Code='$reservation'";
   // echo $reservation;
-  $select=$funObj->Select("emprunt",$rows="*", $where);
+  // $select=$funObj->Select("emprunt",$rows="*", $where);
   // if (date("Y-m-d")>date('Y-m-d', strtotime($select["result"][0]["emprunt_Date"].' +15 days'))) {
   //   // $updat = $funObj->Updat('adherent', $$data_adherent, $_POST['Nickname'], 'Nickname');
   // }
