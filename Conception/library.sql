@@ -2,8 +2,8 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : mer. 01 mars 2023 à 11:40
+-- Hôte : localhost
+-- Généré le : ven. 24 mars 2023 à 10:57
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.0.25
 
@@ -42,6 +42,14 @@ CREATE TABLE `adherent` (
   `Creation_Date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `adherent`
+--
+
+INSERT INTO `adherent` (`Nickname`, `Name`, `Password`, `Admin`, `Address`, `Email`, `Phone`, `CIN`, `Occupation`, `Penalty_Count`, `Birth_Date`, `Creation_Date`) VALUES
+('Ikram12@', 'ELGHALI IKRAM', '$2y$10$nfvQYW13rr5NpDKldBF5Z.xGnj7.y4wmLsVxmGcbH11bqzYCpSfHe', 1, 'Tayert el oulya bloc B ruen N 04', 'IKRAM12@gmail.com', '0687987098', 'ja8hnlk', 'ikram', NULL, '2023-03-16', '2023-03-17'),
+('Ikram131@', 'ELGHALI IKRAM', '$2y$10$QgI7n8.hvESKKAIexR9N5.grgdBmF5OfnrRN/Gp63f9Osjm9niwqK', 0, 'Tayert el oulya bloc B ruen N 04', 'elghaliikram12@gmail.com', '0687987098', 'jaw3hnlk', 'ikram', 1, '2023-03-16', '2023-03-17');
+
 -- --------------------------------------------------------
 
 --
@@ -54,8 +62,16 @@ CREATE TABLE `emprunt` (
   `emprunt_Return_Date` date DEFAULT NULL,
   `ouvrages_Code` int(11) NOT NULL,
   `Nickname` varchar(150) NOT NULL,
-  `Reservation_Code` int(11) NOT NULL
+  `Reservation_Code` int(11) NOT NULL,
+  `emprunt_confirm` varchar(120) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `emprunt`
+--
+
+INSERT INTO `emprunt` (`emprunt_Code`, `emprunt_Date`, `emprunt_Return_Date`, `ouvrages_Code`, `Nickname`, `Reservation_Code`, `emprunt_confirm`) VALUES
+(8, '2023-03-01', '2023-03-24', 5, 'Ikram131@', 14, '1');
 
 -- --------------------------------------------------------
 
@@ -75,6 +91,13 @@ CREATE TABLE `ouvrages` (
   `Type_Code` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `ouvrages`
+--
+
+INSERT INTO `ouvrages` (`ouvrages_Code`, `Title`, `Author_Name`, `Cover_Image`, `State`, `Edition_Date`, `Buy_Date`, `Status`, `Type_Code`) VALUES
+(5, 'add3', 'add3', 'test.png', 'available', '2023-02-28', '2023-03-09', 'Acceptable', 6);
+
 -- --------------------------------------------------------
 
 --
@@ -86,8 +109,16 @@ CREATE TABLE `reservation` (
   `Reservation_Date` date DEFAULT NULL,
   `Reservation_Expiration_Date` date NOT NULL,
   `ouvrages_Code` int(11) NOT NULL,
-  `Nickname` varchar(150) NOT NULL
+  `Nickname` varchar(150) NOT NULL,
+  `Reservation_confirm` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `reservation`
+--
+
+INSERT INTO `reservation` (`Reservation_Code`, `Reservation_Date`, `Reservation_Expiration_Date`, `ouvrages_Code`, `Nickname`, `Reservation_confirm`) VALUES
+(14, '2023-03-24', '2023-03-25', 5, 'Ikram131@', 1);
 
 -- --------------------------------------------------------
 
@@ -100,6 +131,16 @@ CREATE TABLE `types` (
   `Type_Name` varchar(50) DEFAULT NULL,
   `Type_Type` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `types`
+--
+
+INSERT INTO `types` (`Type_Code`, `Type_Name`, `Type_Type`) VALUES
+(2, 'revue', '120'),
+(3, 'revue', '120'),
+(5, 'livre', '120'),
+(6, 'revue', '30');
 
 --
 -- Index pour les tables déchargées
@@ -149,25 +190,25 @@ ALTER TABLE `types`
 -- AUTO_INCREMENT pour la table `emprunt`
 --
 ALTER TABLE `emprunt`
-  MODIFY `emprunt_Code` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `emprunt_Code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `ouvrages`
 --
 ALTER TABLE `ouvrages`
-  MODIFY `ouvrages_Code` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ouvrages_Code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `Reservation_Code` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Reservation_Code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `types`
 --
 ALTER TABLE `types`
-  MODIFY `Type_Code` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Type_Code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Contraintes pour les tables déchargées

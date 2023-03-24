@@ -79,9 +79,9 @@
         {
             try {
                 $pass=password_hash($password, PASSWORD_DEFAULT);
-                $sql = "INSERT INTO `adherent`(`Nickname`, `Name`, `Password`, `Admin` , `Address`, `Email`, `Phone`,`CIN`, `Occupation` ,  `Birth_Date`, `Creation_Date`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                $sql = "INSERT INTO `adherent`(`Nickname`, `Name`, `Password`, `Admin` , `Address`, `Email`, `Phone`,`CIN`, `Occupation` ,`Penalty_Count`,  `Birth_Date`, `Creation_Date`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
                 $query = $this->db->prepare( $sql );
-                $query->execute( array($nickname,$name,$pass,0,$adresse,$email,$phone,$cin,$ocupation,$birthdate,date('Y-m-d') ));
+                $query->execute( array($nickname,$name,$pass,0,$adresse,$email,$phone,$cin,$ocupation,0,$birthdate,date('Y-m-d') ));
                 return $query;
             } catch (PDOException $e) {
                 echo "There is some problem in connection: " . $e->getMessage();

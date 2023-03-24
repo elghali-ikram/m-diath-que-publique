@@ -1,6 +1,4 @@
 <?php include("../includes/head.php") ?>
-
-
     <div class="bg">
     <?php session_start() ;
         include("../includes/navbar.php") ?>
