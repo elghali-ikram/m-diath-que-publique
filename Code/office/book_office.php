@@ -484,7 +484,7 @@ if (isset($_POST['updatBtn'])) {
   $exist = $funObj->Updat('types', $datacategorieupdat, $_POST['idtype'], 'Type_Code');
   $updat = $funObj->Updat('ouvrages', $dataupdat, $_POST['id'], 'ouvrages_Code');
 }
-if ($_POST['delet']) {
+if (isset($_POST['delet'])) {
   $delet = $funObj->Delete('ouvrages','ouvrages_Code', $_POST['delete_id']);
   $delettype = $funObj->Delete('types', 'Type_Code', $_POST['delete_idtype']);
 }
