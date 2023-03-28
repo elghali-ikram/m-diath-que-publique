@@ -22,7 +22,13 @@
       <?php
       include_once('../db.php');
       $db = new dbConnect();
-      $result = $db->selectWithPagination('reservation JOIN ouvrages ON reservation.ouvrages_Code=ouvrages.ouvrages_Code JOIN adherent ON reservation.Nickname=adherent.Nickname LEFT JOIN emprunt ON  emprunt.ouvrages_Code=ouvrages.ouvrages_Code','ouvrages.ouvrages_Code,ouvrages.Title,adherent.Nickname,adherent.Name,ouvrages.Cover_Image,ouvrages.ouvrages_Code,reservation.Reservation_Code,reservation.Reservation_Date,reservation.Reservation_confirm', 'emprunt.emprunt_confirm =0 OR reservation.Reservation_Code NOT IN (SELECT Reservation_Code FROM emprunt )', 2);
+      $result = $db->selectWithPagination('reservation JOIN ouvrages ON
+       reservation.ouvrages_Code=ouvrages.ouvrages_Code JOIN adherent
+        ON reservation.Nickname=adherent.Nickname LEFT JOIN emprunt ON 
+        emprunt.Reservation_Code=reservation.Reservation_Code','ouvrages.ouvrages_Code,ouvrages.Title,adherent.Nickname,
+        adherent.Name,ouvrages.Cover_Image,ouvrages.ouvrages_Code,
+        reservation.Reservation_Code,reservation.Reservation_Date,reservation.Reservation_confirm', 'emprunt.emprunt_confirm = 0 OR 
+        reservation.Reservation_Code NOT IN (SELECT Reservation_Code FROM emprunt )', 2);
       // Loop through the result and display the records
       foreach ($result['result'] as $row) :
       ?>
@@ -68,48 +74,6 @@
       </ul>
     </nav>
   </div>
-<?php
-if(isset($_POST['return'])) 
-{
-  include_once('../db.php');
-$funObj = new dbConnect();
-  $data_updat = array(
-    'emprunt_Return_Date' => date("Y-m-d"),
-    'emprunt_confirm' => 1,
-  );
-  $data_ouvrages = array(
-    'state' => "available",
-  );
-  $value='Penalty_Count + 1';
-  $data_adherent = array(
-    'Penalty_Count' => $value,
-  );
-  print_r($data_adherent);
-
-  $reservation=$_POST['Reservation_Code'];
-  $where="Reservation_Code='$reservation'";
-  echo $where;
-  $select_emprunt=$funObj->Select("emprunt",$rows="*", $where);
-  print_r($select_emprunt["result"]);
-  $now = new DateTime(date("Y-m-d"));
-  echo date('Y-m-d', strtotime($select["result"][0]['emprunt_Date'].' +15 days'));
-  $date2=new DateTime(date('Y-m-d', strtotime($select["result"][0]['emprunt_Date'].' +15 days')));
-  var_dump($now);
-  var_dump($date2);
-
-  if ($now>$date2) {
-    echo "dkhel";
-    $updat = $funObj->Updat('adherent', $$data_adherent, $_POST['Nickname'], 'Nickname');
-  }
-  else
-  {
-    echo "dkhel1";
-  }
-  // $updat = $funObj->Updat('emprunt', $data_updat, $_POST['Reservation_Code'], 'Reservation_Code');
-  // $updat = $funObj->Updat('ouvrages', $data_ouvrages, $_POST['ouvrages_Code'], 'ouvrages_Code');
-}  
-?>
-
   <footer class="d-flex  flex-column align-items-center bg bottom-0">
     <div class="d-flex  gap-3  p-3">
       <a href="http://" class="btn text-light"><i class="fa-brands fa-facebook"></i></a>
@@ -147,8 +111,6 @@ if(isset($_POST['emprunt']))
 }
 if(isset($_POST['return'])) 
 {
-  include_once('../db.php');
-$funObj = new dbConnect();
   $data_updat = array(
     'emprunt_Return_Date' => date("Y-m-d"),
     'emprunt_confirm' => 1,
@@ -156,17 +118,26 @@ $funObj = new dbConnect();
   $data_ouvrages = array(
     'state' => "available",
   );
-  $value='Penalty_Count + 1';
+  $adherent=$_POST['Nickname'];
+  $where="Nickname= '$adherent'";
+  $select_adherent=$funObj->Select("adherent",$rows="*", $where);
+  print_r($select_adherent["result"][0]['Penalty_Count']);
+  $penality=$select_adherent["result"][0]['Penalty_Count'];
   $data_adherent = array(
-    'Penalty_Count' => $value,
+    'Penalty_Count' => $penality + 1,
   );
   $reservation=$_POST['Reservation_Code'];
-  $where="Reservation_Code='$reservation'";
+  $where="Reservation_Code =$reservation";
   $select_emprunt=$funObj->Select("emprunt",$rows="*", $where);
+  print_r($select_emprunt["result"]);
+  $value=$select_emprunt["result"][0]['emprunt_Date'];
   $now = new DateTime(date("Y-m-d"));
-  $date2=new DateTime(date('Y-m-d', strtotime($select["result"][0]['emprunt_Date'].' +15 days')));
-  if ($now>$date2) {
-    $updat = $funObj->Updat('adherent', $$data_adherent, $_POST['Nickname'], 'Nickname');
+  $date2=new DateTime(date('Y-m-d', strtotime($value.' +15 days')));
+  print_r($now);
+  print_r($date2);
+  if ($now > $date2) {
+    echo "dkhel";
+    $updat = $funObj->Updat('adherent', $data_adherent, $_POST['Nickname'], 'Nickname');
   }
   $updat = $funObj->Updat('emprunt', $data_updat, $_POST['Reservation_Code'], 'Reservation_Code');
   $updat = $funObj->Updat('ouvrages', $data_ouvrages, $_POST['ouvrages_Code'], 'ouvrages_Code');
