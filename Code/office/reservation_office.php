@@ -116,12 +116,11 @@ if(isset($_POST['return']))
     'emprunt_confirm' => 1,
   );
   $data_ouvrages = array(
-    'state' => "available",
+    'state' => "Available",
   );
   $adherent=$_POST['Nickname'];
   $where="Nickname= '$adherent'";
   $select_adherent=$funObj->Select("adherent",$rows="*", $where);
-  print_r($select_adherent["result"][0]['Penalty_Count']);
   $penality=$select_adherent["result"][0]['Penalty_Count'];
   $data_adherent = array(
     'Penalty_Count' => $penality + 1,
@@ -129,14 +128,10 @@ if(isset($_POST['return']))
   $reservation=$_POST['Reservation_Code'];
   $where="Reservation_Code =$reservation";
   $select_emprunt=$funObj->Select("emprunt",$rows="*", $where);
-  print_r($select_emprunt["result"]);
   $value=$select_emprunt["result"][0]['emprunt_Date'];
   $now = new DateTime(date("Y-m-d"));
   $date2=new DateTime(date('Y-m-d', strtotime($value.' +15 days')));
-  print_r($now);
-  print_r($date2);
   if ($now > $date2) {
-    echo "dkhel";
     $updat = $funObj->Updat('adherent', $data_adherent, $_POST['Nickname'], 'Nickname');
   }
   $updat = $funObj->Updat('emprunt', $data_updat, $_POST['Reservation_Code'], 'Reservation_Code');

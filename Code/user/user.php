@@ -89,7 +89,7 @@
               <p class="card-text"><small class="text-muted"><?= $row['State'] . " " . $row['Status'] ?></small></p>
               <form action="./user.php" method="post">
                 <input type="hidden" name="ouvragecode" value="<?= $row['ouvrages_Code'] ?>">
-                <button type="submit" class="btn bgbtn" name="reserve" value="reserve" <?= $row['State'] == 'available' ? '' : 'disabled'; ?>>Reserve</button>
+                <button type="submit" class="btn bgbtn" name="reserve" value="reserve" <?= $row['State'] == 'Available' ? '' : 'disabled'; ?>>Reserve</button>
               </form>
             </div>
           </div>
