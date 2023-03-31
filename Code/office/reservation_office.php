@@ -126,25 +126,16 @@ if(isset($_POST['return']))
     'Penalty_Count' => $penality + 1,
   );
   $reservation=$_POST['Reservation_Code'];
-<<<<<<< Updated upstream
   $where="Reservation_Code =$reservation";
-=======
-  $where="Reservation_Code=$reservation";
->>>>>>> Stashed changes
   $select_emprunt=$funObj->Select("emprunt",$rows="*", $where);
   $value=$select_emprunt["result"][0]['emprunt_Date'];
   $now = new DateTime(date("Y-m-d"));
-<<<<<<< Updated upstream
   $date2=new DateTime(date('Y-m-d', strtotime($value.' +15 days')));
   if ($now > $date2) {
-=======
-  $date2=new DateTime(date('Y-m-d', strtotime($select["result"][0]['emprunt_Date'].' +15 days')));
-  if ($now>$date2) {
->>>>>>> Stashed changes
     $updat = $funObj->Updat('adherent', $data_adherent, $_POST['Nickname'], 'Nickname');
   }
-  // $updat = $funObj->Updat('emprunt', $data_updat, $_POST['Reservation_Code'], 'Reservation_Code');
-  // $updat = $funObj->Updat('ouvrages', $data_ouvrages, $_POST['ouvrages_Code'], 'ouvrages_Code');
+  $updat = $funObj->Updat('emprunt', $data_updat, $_POST['Reservation_Code'], 'Reservation_Code');
+  $updat = $funObj->Updat('ouvrages', $data_ouvrages, $_POST['ouvrages_Code'], 'ouvrages_Code');
 }
 
 ?>
