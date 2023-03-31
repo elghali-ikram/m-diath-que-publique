@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : ven. 24 mars 2023 à 10:57
+-- Généré le : ven. 31 mars 2023 à 11:12
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.0.25
 
@@ -48,7 +48,7 @@ CREATE TABLE `adherent` (
 
 INSERT INTO `adherent` (`Nickname`, `Name`, `Password`, `Admin`, `Address`, `Email`, `Phone`, `CIN`, `Occupation`, `Penalty_Count`, `Birth_Date`, `Creation_Date`) VALUES
 ('Ikram12@', 'ELGHALI IKRAM', '$2y$10$nfvQYW13rr5NpDKldBF5Z.xGnj7.y4wmLsVxmGcbH11bqzYCpSfHe', 1, 'Tayert el oulya bloc B ruen N 04', 'IKRAM12@gmail.com', '0687987098', 'ja8hnlk', 'ikram', NULL, '2023-03-16', '2023-03-17'),
-('Ikram131@', 'ELGHALI IKRAM', '$2y$10$QgI7n8.hvESKKAIexR9N5.grgdBmF5OfnrRN/Gp63f9Osjm9niwqK', 0, 'Tayert el oulya bloc B ruen N 04', 'elghaliikram12@gmail.com', '0687987098', 'jaw3hnlk', 'ikram', 1, '2023-03-16', '2023-03-17');
+('Ikram131@', 'ELGHALI IKRAM', '$2y$10$QgI7n8.hvESKKAIexR9N5.grgdBmF5OfnrRN/Gp63f9Osjm9niwqK', 0, 'Tayert el oulya bloc B ruen N 04', 'elghaliikram12@gmail.com', '0687987098', 'jaw3hnlk', 'ikram', 2, '2023-03-16', '2023-03-17');
 
 -- --------------------------------------------------------
 
@@ -71,7 +71,8 @@ CREATE TABLE `emprunt` (
 --
 
 INSERT INTO `emprunt` (`emprunt_Code`, `emprunt_Date`, `emprunt_Return_Date`, `ouvrages_Code`, `Nickname`, `Reservation_Code`, `emprunt_confirm`) VALUES
-(8, '2023-03-01', '2023-03-24', 5, 'Ikram131@', 14, '1');
+(11, '2023-03-29', '2023-03-29', 1, 'Ikram131@', 17, '1'),
+(12, '2023-03-29', '2023-03-29', 1, 'Ikram131@', 18, '1');
 
 -- --------------------------------------------------------
 
@@ -96,7 +97,21 @@ CREATE TABLE `ouvrages` (
 --
 
 INSERT INTO `ouvrages` (`ouvrages_Code`, `Title`, `Author_Name`, `Cover_Image`, `State`, `Edition_Date`, `Buy_Date`, `Status`, `Type_Code`) VALUES
-(5, 'add3', 'add3', 'test.png', 'available', '2023-02-28', '2023-03-09', 'Acceptable', 6);
+(1, 'Red,White & Royal blue ', 'Casey McQuiston', 'Group 54.png', 'Available', '2019-05-14', '2019-12-01', 'new', 2),
+(2, 'The Cruel Prince', ' Holly Black', 'Group 55.jpg', 'Available', '2017-01-02', '2020-03-01', 'New', 2),
+(3, 'Rich Dad Poor Dad', 'Robert Kiyosaki&Sharon L. Lechter', 'Group 53.png', 'Available', '2000-04-01', '2001-03-01', 'New', 3),
+(4, 'The Hating Game', 'Peter Hutchings', 'Group 52.png', 'Available', '2021-12-10', '2022-04-11', 'Acceptable', 2),
+(5, 'Ugly Love', 'Colleen Hoover', 'Group 49.png', 'Available', '2014-08-05', '2015-05-21', 'Good condition', 5),
+(6, 'The law of Human Nature', 'Robert Greene', 'Group 50.png', 'Available', '2018-10-16', '2018-12-04', 'New', 6),
+(7, 'The Seven Husbands of Evelyn Hugo', 'Taylor Jenkins Reid', 'Group 51.png', 'Available', '2017-06-13', '2017-09-01', 'Good condition', 2),
+(8, 'Ego is The Enemy', 'Ryan Holiday', 'Group 61.jpg', 'Available', '2017-06-14', '2018-01-20', 'Acceptable', 3),
+(9, 'The Book Thief', 'Markus Zusak', 'Group 56.webp', 'Available', '2006-03-01', '2007-11-10', 'Quite worn', 3),
+(10, 'They Both Die at the End', 'Adam Silvera', 'Group 57.jpg', 'Available', '2017-09-05', '2018-12-21', 'New', 3),
+(11, 'The Subtle Art of Not Giving a F*ck', 'Mark Manson', 'Group 47.png', 'Available', '2016-09-13', '2017-05-11', 'Good condition', 5),
+(12, 'Call me by your Name', 'André Aciman', 'Group 48.png', 'Available', '2007-01-23', '2008-06-21', 'Quite worn', 6),
+(13, 'The School for Good and Evil', ' Paul Feig', 'Group 58.jpg', 'Available', '2022-10-18', '2023-01-01', 'Acceptable', 6),
+(14, 'Enola Holmes', 'Harry Bradbeer', 'Group 59.jpg', 'Available', '2020-09-23', '2020-12-11', 'Good condition', 5),
+(15, 'Red Notice', ' Rawson Marshall Thurber', 'Group 60.jpg', 'Available', '2023-03-01', '2021-11-04', 'Torn', 5);
 
 -- --------------------------------------------------------
 
@@ -118,7 +133,8 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`Reservation_Code`, `Reservation_Date`, `Reservation_Expiration_Date`, `ouvrages_Code`, `Nickname`, `Reservation_confirm`) VALUES
-(14, '2023-03-24', '2023-03-25', 5, 'Ikram131@', 1);
+(17, '2023-03-29', '2023-03-30', 1, 'Ikram131@', 1),
+(18, '2023-03-29', '2023-03-30', 1, 'Ikram131@', 1);
 
 -- --------------------------------------------------------
 
@@ -190,19 +206,19 @@ ALTER TABLE `types`
 -- AUTO_INCREMENT pour la table `emprunt`
 --
 ALTER TABLE `emprunt`
-  MODIFY `emprunt_Code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `emprunt_Code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `ouvrages`
 --
 ALTER TABLE `ouvrages`
-  MODIFY `ouvrages_Code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ouvrages_Code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `Reservation_Code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `Reservation_Code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT pour la table `types`
