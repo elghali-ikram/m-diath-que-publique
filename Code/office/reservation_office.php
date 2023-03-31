@@ -108,6 +108,8 @@ if(isset($_POST['emprunt']))
   $insert = $funObj->Insert('emprunt', $data);
   $updat = $funObj->Updat('reservation', $dataupdat, $_POST['Reservation_Code'], 'Reservation_Code');
   $updat = $funObj->Updat('ouvrages', $updat_ouvrages, $_POST['ouvrages_Code'], 'ouvrages_Code');
+  header("location: ../office/reservation_office.php");
+
 }
 if(isset($_POST['return'])) 
 {

@@ -3,6 +3,11 @@ html {
   min-height: 100%;
   padding-bottom:160px;
 }
+.back
+{
+  background-color: #104C59 !important;
+
+}
 body {
   margin-bottom: 160px;
 }
